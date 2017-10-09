@@ -1,0 +1,82 @@
+html, body {
+	font-family: 'Raleway',sans-serif;
+	-ms-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+
+.nvidia {
+	color: #047400;
+}
+
+.amdgpu {
+	color: #B30002;
+}
+h4 {
+    color: red !important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+     color: #1d1e1f !important;
+}
+
+.progress, .progress-bar {
+    border-radius: 0 !important;
+}
+
+.minerID {
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+th {
+	white-space: nowrap;
+	width: 1%;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}
+
+#miner3_pwr .slider-selection {
+	background: #BABABA;
+}
+
+#search {
+	border: 1px solid #5cb85c;
+}
+
+.summary_wrapper{
+	text-align: center;
+	margin-bottom: 25px;
+}
+.summary_block_ewbf-zcash, 
+.summary_block_claymore-zcash{
+	background-color: #DCDCDC;
+	height: auto;
+	width: auto;
+	padding: 5px;
+	margin: 5px;
+	border: 0px solid;
+	border-radius: 6px;
+	/*float: left;*/
+	display: inline-block;
+	position:relative;
+	text-align: center;
+	color: #2F2F2F
+
+}
+.summary_block_claymore{
+	background-color: #DCDCDC;
+	height: auto;
+	width: auto;
+	padding: 5px;
+	margin: 5px;
+	border: 0px solid;
+	border-radius: 6px;
+	/*float: left;*/
+	display: inline-block;
+	position:relative;
+	text-align: center;
+	color: #2F2F2F;
+
+}
