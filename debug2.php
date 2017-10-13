@@ -1,27 +1,34 @@
-<html>
+<html lang="ru_RU">
 <head>
 	<title>Debug file</title>
 </head>
 <body>
 
 <?php
+/*
+$language = "ru_RU";
+putenv("LANG=".$language);
+setlocale(LC_ALL, $language);
 
-	//
+$domain = "messages";
+bindtextdomain($domain, "Locale");
+*/
+$locale = 'ru_RU'; // Pretend this came from the Accept-Language header
+$locale_dir = 'Lang'; // your .po and .mo files should be at $locale_dir/$locale/LC_MESSAGES/messages.{po,mo}
+
+setlocale(LC_ALL, "ru_RU.UTF-8");
+putenv("LANGUAGE=ru_RU.UTF-8");
+//setenv("LANGUAGE=$locale");
 	
-	$locale = "ru_RU";
-    //if (isSet($_GET["locale"])) $locale = $_GET["locale"];
-    putenv("LC_ALL=$locale");
-    setlocale(LC_ALL, $locale, 'UTF-8');
-	putenv("LANGUAGE=$locale");
-    bindtextdomain("messages", "Lang");
-    textdomain("messages");
+bindtextdomain('messages', 'Lang/ru_RU');
+textdomain('messages');
 
 echo gettext("Welcome to ethOS Dashboard")."<br/>";
 echo gettext("Enter ethOS panel ID or your custom location set in your config file.")."<br/>";
 echo gettext("View your hashing stats summary and monitor your rigs state.")."<br/>";
 echo gettext("Update rig settings, change coins, miners and pools, and save changes into config file.")."<br/>";
 	
-	
+echo "<br />";	
 require("controller/ethosclient.php");
 //require("controller/ethosclient.php");
  

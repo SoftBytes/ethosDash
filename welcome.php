@@ -8,5 +8,15 @@
 
 <body>
 	<h4>Welcome</h4>
+	<?php
+	$language = "en_AU";
+putenv("LANG=".$language);
+setlocale(LC_ALL, $language);
+
+$domain = "messages_new";
+bindtextdomain($domain, "Locale");
+
+echo gettext("welcome")."<br/>";
+	?>
 </body>
 </html>
