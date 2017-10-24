@@ -3,11 +3,6 @@ html, body {
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
-body{
-	background-color: #272727 !important;
-	background-image: url(../images/bg-pattern.png);
-	background-repeat: repeat;
-}
 
 .nvidia {
 	color: #047400;
@@ -57,7 +52,7 @@ th {
 
 /* style icon */
 .inner-addon .fa-spinner {
-  display: none;
+	display: none;
   position: absolute;
   padding: 10px;
   pointer-events: none;
@@ -102,25 +97,14 @@ th {
 }
 @font-face {
     font-family: digital;
-    src: url(../fonts/DS-DIGI.TTF);
+    src: url(DS-DIGI.TTF);
     font-weight: normal;
 }
 #id {
 	font-size: 50px;
 	font-family: digital;
-	color: aqua;
 }
-#intro{
-	background-color: #018e64;
-}
-.easy_steps{
-	display: inline-block; 
-	text-align: left; 
-	max-width: 700px;
-}
-
 .summary_wrapper{
-	display: inline-block; 
 	text-align: center;
 	margin-bottom: 25px;
 }
@@ -137,8 +121,7 @@ th {
 	display: inline-block;
 	position:relative;
 	text-align: center;
-	color: #2F2F2F;
-	padding: 55px;
+	color: #2F2F2F
 
 }
 .summary_block_claymore{
@@ -154,6 +137,5 @@ th {
 	position:relative;
 	text-align: center;
 	color: #2F2F2F;
-	padding: 55px;
 
 }

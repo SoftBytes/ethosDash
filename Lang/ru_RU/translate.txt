@@ -1,7 +1,6 @@
 {
-	"Welcome to ethOS Dashboard" : "Приветствуем вас на нашем сайте.".
-	"Enter ethOS panel ID or your custom location set in your config file." : "Введите свой эфОС номер панели или свою локацию из конфигурационного файла на странице Входа.",
+	"Welcome to ethOS Dashboard. Here you can view and control your mining rigs running on ethOS." : "Приветствуем вас на нашем сайте. Здесь вы легко и просто можете следить и управлять своими майнерами работающими под управлением эфОС.",
+	"Enter ethOS panel ID or your custom location set in your config file." : "Введите свой эфОС номер панели или свою локацию* на странице Входа.",
 	"View your hashing stats summary and monitor your rigs state." : "Отслеживайте суммарные данные и статистику по каждой ферме на Главной Панели.",
-	"Update rig settings, change coins, miners and pools, and save changes into config file." : "Поменяйте параметры фермы - частоту памяти, алгоритм, адрес пула и сохраните изменения в конфигурационный файл, на странице Настроек.",
-
+	"Update rig settings, change coins, miners and pools, and save changes into config file." : "Поменяйте параметры фермы - частоту памяти, алгоритм, адрес пула и сохраните изменения в конфигурационный файл, на странице Настроек."
 }

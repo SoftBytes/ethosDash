@@ -1,0 +1,19 @@
+{
+	"data": 
+		{
+			"title": "Dashboard- Main View",
+			"menu1": "Home",
+			"menu2": "Contact",
+			"menu3": "About US",
+			"menu4": "Exit",
+			"ethOS": "ethOS",
+			"summary" : "Mining Summary",
+			"sum_note" : "Grouped by algos",
+			"step1" : "Enter ethOS panel ID or your custom location set in your config file.",
+			"step2" : "View your hashing stats summary and monitor your rigs state.",
+			"step3" : "Update rig settings, change coins, miners and pools, and save changes into config file.",
+			"login_title" : "Please enter",
+			"login_placeholder" : "ETHOS ID",
+			"login_button" : "GO"
+		}
+}

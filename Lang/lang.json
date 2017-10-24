@@ -1,0 +1,17 @@
+// JSON Document
+{
+	"welcome":{
+		"eng":{
+			"_str1_":"Welcome to ethOS Dashboard. Here you can view and control your mining rigs running on ethOS.",
+			"_str2_":"Enter ethOS panel ID or your custom location set in your config file.",
+			"_str3_":"View your hashing stats summary and monitor your rigs state.",
+			"_str4_":"Update rig settings, change coins, miners and pools, and save changes into config file."
+		},
+		"rus":{
+			"_str1_":"Приветствуем вас на нашем сайте. Здесь вы легко и просто можете следить и управлять своими майнерами работающими под управлением эфОС.",
+			"_str2_":"Введите свой эфОС номер панели или свою локацию(*) на странице Входа.",
+			"_str3_":"Отслеживайте суммарные данные и статистику по каждой ферме на Главной Панели.",
+			"_str4_":"Поменяйте параметры фермы - частоту памяти, алгоритм, адрес пула и сохраните изменения в конфигурационный файл на странице Настроек"
+		}
+	}
+}

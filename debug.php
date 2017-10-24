@@ -1,29 +1,31 @@
-<html>
-<head>
-	<title>Debug file</title>
-</head>
-<body>
-
 <?php
-
-	//
-	
-	$locale = "ru_RU";
-    //if (isSet($_GET["locale"])) $locale = $_GET["locale"];
-    putenv("LC_ALL=$locale");
-    setlocale(LC_ALL, $locale, 'UTF-8');
-	putenv("LANGUAGE=$locale");
-    bindtextdomain("messages", "Lang");
-    textdomain("messages");
-
-echo gettext("Welcome to ethOS Dashboard")."<br/>";
-echo gettext("Enter ethOS panel ID or your custom location set in your config file.")."<br/>";
-echo gettext("View your hashing stats summary and monitor your rigs state.")."<br/>";
-echo gettext("Update rig settings, change coins, miners and pools, and save changes into config file.")."<br/>";
-	
+ if (isset($_GET["lang"])){
+	 $lang= $_GET["lang"];
+ }else{
+	$lang= "en";
+ } 
 	
 require("controller/ethosclient.php");
+require("helpers/langproc.php");
 //require("controller/ethosclient.php");
+	
+	$c = new getlangString($lang, "welcome");
+	$pagecontent = $c->getPageContent();
+	$pagetitle = $c->getPageTitle();
+?>
+
+<html lang="<?php echo $lang ?>">
+<head>
+	<title><?php echo $pagetitle ?></title>
+</head>
+<body>
+<?php
+	
+	//echo '<pre>' . print_r($pagecontent, true) . '</pre>';
+	echo "<h4>".$pagecontent["str1"]."</h4>";
+	
+	
+	
  
 	$o = new ethosClient("fd99b1", "summary");
 	$url= $o->getURL();

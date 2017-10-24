@@ -1,22 +1,30 @@
 <!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Welcome</title>
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-
+<?php
+ if (isset($_GET["lang"])){
+	 $lang= $_GET["lang"];
+ }else{
+	$lang= "en";
+ } 
+?>
+<html lang="<?php echo $lang ?>">
+<?php
+	require("helpers/langproc.php");
+	
+	$page = new getlangString($lang, "welcome");
+	$pagecontent = $page->getPageContent();
+	$pagetitle = $page->getPageTitle();
+	  
+	  
+//render html head section
+include("inc/head.php");
+?>
 <body>
-	<h4>Welcome</h4>
-	<?php
-	$language = "en_AU";
-putenv("LANG=".$language);
-setlocale(LC_ALL, $language);
+<?php
+	
+include("inc/topnav.php");
+include("inc/intro.php");
+include("inc/login.php");
 
-$domain = "messages_new";
-bindtextdomain($domain, "Locale");
-
-echo gettext("welcome")."<br/>";
-	?>
+?>
 </body>
 </html>

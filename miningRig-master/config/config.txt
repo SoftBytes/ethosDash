@@ -1,0 +1,26 @@
+# -------------------------- Miner  ----------------------------
+driver : 
+vlt  
+pwr  
+mem  
+miner  
+flg  
+fan  
+
+# -------------------------- Miner  ----------------------------
+driver  
+vlt  
+pwr  
+mem  
+miner  
+flg  
+fan  
+
+# -------------------------- Miner  ----------------------------
+driver  
+vlt  
+pwr  
+mem  
+miner  
+flg  
+fan  
