@@ -1,15 +1,15 @@
 <div id="intro" class="jumbotron jumbotron-fluid text-center text-white">
- 
+
  <?php
 
 	if($o->error ) echo "<h4>".$o->error_message."</h4>";
 	else{
 		?>
-  <h1><?php echo $pagecontent["summary"] ?></h1>
-  <h3><?php echo $pagecontent["sum_note"] ?></h3>
-  
+  <h1><?= $pagecontent["summary"] ?></h1>
+  <h3><?= $pagecontent["sum_note"] ?></h3>
+
   <?php
-		
+
 		$summary = $alldata['per_info'];
 				foreach($summary as $algo_miner=>$sum_info){
 		?>
@@ -22,10 +22,10 @@
               <span>Checked at: <?= date('H:i d/m', $sum_info["current_time"]); ?></span>
             </div> <!-- block summary end -->
         </div>
-	    
-		<?php 
+
+		<?php
 		}
 	}
-	
+
 ?>
 

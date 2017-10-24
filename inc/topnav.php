@@ -10,9 +10,9 @@
 
    <div class="collapse navbar-collapse" id="myContent">
     <div class="navbar-nav navbar mr-auto">
-       <a href="welcome.php?lang=<?php echo $lang ?>" class="nav-item nav-link active"><?php echo $pagecontent["menu1"] ?></a>
-        <a href="#" class="nav-item nav-link"><?php echo $pagecontent["menu2"] ?></a>
-        <a href="#" class="nav-item nav-link"><?php echo $pagecontent["menu3"] ?></a>
+       <a href="welcome.php?lang=<?= $lang ?>" class="nav-item nav-link active"><?= $pagecontent["menu1"] ?></a>
+        <a href="#" class="nav-item nav-link"><?= $pagecontent["menu2"] ?></a>
+        <a href="#" class="nav-item nav-link"><?= $pagecontent["menu3"] ?></a>
 
         <?php
 		/*
