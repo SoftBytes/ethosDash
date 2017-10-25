@@ -21,10 +21,13 @@ include("inc/head.php");
 <body>
 <?php
 
+
+
 include("inc/topnav.php");
 include("inc/intro.php");
 include("inc/login.php");
-include("inc/footer.php");
+include("inc/jQueryBootstrapCDNs.php");
+include("inc/loginFunction.php");
 
 
 ?>

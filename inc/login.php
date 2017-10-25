@@ -1,4 +1,4 @@
-<div class="container text-center col-10 col-sm-4 col-lg-3 col-xl-2">
+<div class="container text-center col-10 col-sm-6 col-md-4 col-lg-3 col-xl-2">
 
       <form action="index.php" method="get" class="form">
        <input type="hidden" value="<?= $lang ?>" name="lang" />

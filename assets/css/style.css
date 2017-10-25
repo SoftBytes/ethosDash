@@ -57,7 +57,7 @@ th {
 
 /* style icon */
 .inner-addon .fa-spinner {
-  display: none;
+  visibility: hidden;
   position: absolute;
   padding: 10px;
   pointer-events: none;
@@ -114,17 +114,17 @@ th {
 	background-color: #018e64;
 }
 .easy_steps{
-	display: inline-block; 
-	text-align: left; 
+	display: inline-block;
+	text-align: left;
 	max-width: 700px;
 }
 
 .summary_wrapper{
-	display: inline-block; 
+	display: inline-block;
 	text-align: center;
 	margin-bottom: 25px;
 }
-.summary_block_ewbf-zcash, 
+.summary_block_ewbf-zcash,
 .summary_block_claymore-zcash{
 	background-color: #DCDCDC;
 	height: auto;
