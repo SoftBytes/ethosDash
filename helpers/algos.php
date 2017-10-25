@@ -74,7 +74,7 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'lyra2'  : $algo =  'CryptoCoin';
 				break;
-			case 'lyra2v2' : $algo = 'VertCoin';
+			case 'lyra2v2' : $algo = 'Lyra2RE2';
 				break;
 			case 'lyra2z'  : $algo = 'ZeroCoin';
 				break;
@@ -146,5 +146,35 @@ function get_algo($miner, $flag = NULL) {
 	}
 	
 	return $algo;
+}
+
+function algoUnits($algo){
+	
+		switch($algo){
+			case 'DaggerHash' : $unit = 'Mh/s';
+				break;
+			case  'EquiHash': $unit = 'Sol/s';
+				break;
+			case  'CryptoNight': $unit = 'H/s';
+				break;
+			case  'Decred Blake256': $unit = 'MH/s';
+				break;
+			case  'Scrypt': $unit = 'kH/s';
+				break;
+			case  'LBRY': $unit = 'MH/s';
+				break;
+			case  'Lyra2RE2': $unit = 'kH/s';
+				break;
+			case  'Blake 256 (SFR)': $unit = 'MH/s';
+				break;
+			case  'Fast Blake 256': $unit = 'MH/s';
+				break;
+			case  'SIA': $unit = 'MH/s';
+				break;
+				
+			default: $unit = 'MH/s';
+		}
+	return $unit;
+	
 }
 ?>
