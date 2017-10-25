@@ -57,7 +57,7 @@ th {
 
 /* style icon */
 .inner-addon .fa-spinner {
-  visibility: hidden;
+  display: none;
   position: absolute;
   padding: 10px;
   pointer-events: none;
@@ -114,46 +114,54 @@ th {
 	background-color: #018e64;
 }
 .easy_steps{
-	display: inline-block;
-	text-align: left;
+	display: inline-block; 
+	text-align: left; 
 	max-width: 700px;
 }
 
 .summary_wrapper{
-	display: inline-block;
+	display: inline-block; 
 	text-align: center;
 	margin-bottom: 25px;
 }
-.summary_block_ewbf-zcash,
-.summary_block_claymore-zcash{
+.summary_block{
 	background-color: #DCDCDC;
 	height: auto;
 	width: auto;
-	padding: 5px;
 	margin: 5px;
-	border: 0px solid;
-	border-radius: 6px;
-	/*float: left;*/
+	border: 2px solid;
+	border-color: #4D4D4D;
+		/*border-radius: 6px;
+float: left;*/
 	display: inline-block;
 	position:relative;
 	text-align: center;
 	color: #2F2F2F;
-	padding: 55px;
+	min-width: 250px;
+
 
 }
-.summary_block_claymore{
-	background-color: #DCDCDC;
-	height: auto;
-	width: auto;
-	padding: 5px;
-	margin: 5px;
-	border: 0px solid;
-	border-radius: 6px;
-	/*float: left;*/
-	display: inline-block;
-	position:relative;
-	text-align: center;
-	color: #2F2F2F;
-	padding: 55px;
 
+.summary_miner{
+	
+	background-color: #3F3F3F;
+	color: #E4DCDC;
+	border-bottom: 1px solid;
+	border-color: #4D4D4D;
+	padding: 25px;
+	
+}
+
+.summary_miner h6{
+	font-style: italic;
+}
+.summary_info {
+	border-bottom: 1px solid;
+	border-color: #4D4D4D;
+	padding: 10px;
+}
+
+.in_brackets{
+	font-style: italic;
+	font-size: 13px;
 }
