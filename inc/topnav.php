@@ -10,9 +10,9 @@
 
    <div class="collapse navbar-collapse" id="myContent">
     <div class="navbar-nav navbar mr-auto">
-       <a href="welcome.php?lang=<?= $lang ?>" class="nav-item nav-link active"><?= $pagecontent["menu1"] ?></a>
-        <a href="#" class="nav-item nav-link"><?= $pagecontent["menu2"] ?></a>
-        <a href="#" class="nav-item nav-link"><?= $pagecontent["menu3"] ?></a>
+       <a href="welcome.php?lang=<?php echo $lang ?>" class="nav-item nav-link active"><?php echo $pagecontent["menu1"] ?></a>
+        <a href="#" class="nav-item nav-link"><?php echo $pagecontent["menu2"] ?></a>
+        <a href="#" class="nav-item nav-link"><?php echo $pagecontent["menu3"] ?></a>
 
         <?php
 		/*
@@ -24,7 +24,7 @@
         ?>
 
      </div><!-- end navbar-nav navbar -->
-
+	<!-- 
      <form class="navbar-form navbar-right form-group" style="margin-top: 10px">
 
       <div class="input-group">
@@ -32,9 +32,21 @@
         <span class="input-group-btn">
           <button class="btn btn-outline-success">GO</button>
         </span>
+		  
       </div>
 
-     </form>
+
+
+     </form>-->
+    <div class="navbar-right">
+ 	
+		 	<a  href="http://<?php echo $_SERVER['SERVER_NAME']. ($_SERVER['SERVER_NAME']=="localhost"?":".$_SERVER['SERVER_PORT']:""). $_SERVER['PHP_SELF'] ?>?lang=en<?php echo (isset($_GET['id'])?"&id=".$_GET['id']:"") ?>" target="_self">
+		 	<img src="assets/images/<?php echo ($lang=="en"?"en-active":"en") ?>.png" width="40" style="text"></a>
+		 	
+		 	&nbsp;
+			 <a  href="http://<?php echo $_SERVER['SERVER_NAME']. ($_SERVER['SERVER_NAME']=="localhost"?":".$_SERVER['SERVER_PORT']:""). $_SERVER['PHP_SELF'] ?>?lang=ru<?php echo (isset($_GET['id'])?"&id=".$_GET['id']:"") ?>" target="_self">
+			 <img src="assets/images/<?php echo ($lang=="ru"?"ru-active":"ru") ?>.png" width="40" style="text"></a>
+	</div>
     </div>  <!-- end collapse -->
 
   </div> <!-- end container -->
