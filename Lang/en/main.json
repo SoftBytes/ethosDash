@@ -12,9 +12,18 @@
 			"label1" : "Algorithm",
 			"label2" : "Total Hashrate",
 			"label3" : "Rigs",
-			"label4" : "(Live/Total)",
+			"label4" : "Live/Total",
 			"label5" : "GPU",
 			"label6" : "Checked at",
-			"label7" : "..."
+			"label7" : "Total Hashrate",
+			"label8" : "Alive GPUs",
+			"label9" : "Total GPUs",
+			"label10" : "Alive Rigs",
+			"label11" : "Total Rigs",
+			"label12" : "Capacity",
+			"label13" : "ethOS Panel's API is not available.",
+			"label14" : "Most likeley your ethOS panel is pending verification and has been locked from using API. We appoligise for any inconvinience, bit it's beyond our control.",
+			"label15" : "Check",
+			"label16" : "panel for more details."
 		}
 }

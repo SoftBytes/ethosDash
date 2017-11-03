@@ -22,33 +22,47 @@ else $ethos_id= $_GET["id"];
 	require("controller/ethosclient.php");
 	require("helpers/algos.php");
 	require("view/mainview.php");
+
 	  
 	//language controller class
 	$c = new getlangString($lang, "main");
 	$pagecontent = $c->getPageContent();
 	$pagetitle = $c->getPageTitle();
+	  
+	include("inc/head.php");
 	
 	 //ethOS Client API call
 	$o = new ethosClient($ethos_id, "summary");
 	$url= $o->getURL();
 	$o->sendRequest($url); 
 	$ethos_response =  $o->response_content;
-	$alldata= json_decode($ethos_response, true);
+	  
+
+	  
+	//$alldata= json_decode($ethos_response, true);
 	  
 	  
 //render html head section
-include("inc/head.php");
+
 ?>
 <body>
 <?php
 include("inc/topnav.php");
 
-//UI Summary Handler
-$s = new summaryBlock();
-include("inc/summary.php");
-	
+	if(!$o->json_error && is_array($ethos_response)){
+		
+		$alldata= $ethos_response;
+		//UI Summary Handler
+		//$s = new summaryBlock();
+		include("inc/summary.php");
+		include("inc/rigslist.php");
+		
+	}else{
+		include("inc/locked_api.php");
+	}
 
 	
 ?>
+
 </body>
 </html>

@@ -78,3 +78,4 @@ function config() {
 	+"&fa3="+ miner3_fan, true);
 	xhttp.send();
 }
+

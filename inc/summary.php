@@ -5,15 +5,31 @@
 	if($o->error ) echo "<h4>".$o->error_message."</h4>";
 	else{
 		?>
-  <h1><?php echo $pagecontent["summary"] ?></h1>
-  <h3><?php echo $pagecontent["sum_note"] ?></h3><br/>
+  <!-- <h1><?php //echo $pagecontent["summary"] ?></h1>-->
+  <h3><?php echo $pagecontent["summary"] ?></h3><br/>
   
   <?php
+		$s = new summaryBlock();
 		
-		$summary = $alldata['per_info'];
-				foreach($summary as $algo_miner=>$sum_info){
+		
+		$tlabels = array("hashrate"=>$pagecontent["label7"],"gpus"=>$pagecontent["label5"],"total_alive" =>$pagecontent["label4"], "rigs"=>$pagecontent["label3"],"capacity"=>$pagecontent["label12"]);
+		
+		$tvalues = array("hashrate"=>$alldata["total_hash"],"alive_gpus"=>$alldata["alive_gpus"],"total_gpus" =>$alldata["total_gpus"], "alive_rigs"=>$alldata["alive_rigs"],"total_rigs"=>$alldata["total_rigs"],"capacity"=>$alldata["capacity"]);
+	?>	
+<!-- Tital Hash, Capacity, Ris and GPus -->
+	<div>
+
+	<?php $s->totalInfo($tvalues, $tlabels) ?>
+
+</div>
+<!-- Total Power, Avg. Temperature-->
+<div>
+</div>	
+	<?php	
+		$miners_summary = $alldata['per_info'];
+		foreach($miners_summary as $algo_miner=>$sum_info){
 		?>
-      <div class="summary_wrapper">
+     <div class="summary_wrapper"> 
         <div class="summary_block">
               
             <?php 
@@ -25,12 +41,15 @@
 			
 			?>
               
-            </div> 
-        </div>
-	    
+         </div> 
+        
+	   	</div> 
 		<?php 
 		}
+		?>
+
+	<?php 
 	}
 	
 ?>
-
+</div>

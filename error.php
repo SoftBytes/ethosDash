@@ -8,6 +8,6 @@
 
 <body>
 	<h4>Oops! You got yourself into the weid place.</h4>
-	<p>Go <a href="http://localhost/ethosdash/welcome.php">back</a> to start.</p>
+	<p>Go <a href="http://localhost:8888/ethosdash/welcome.php">back</a> to start.</p>
 </body>
 </html>

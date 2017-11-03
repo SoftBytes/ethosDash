@@ -9,13 +9,10 @@
     <!-- update this for favicon -->
     <!-- <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
     <!-- link to normalizer/ cross browser css styles -->
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="none" onload="this.media='all';">
-
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" media="none" onload="this.media='all';">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <!-- link to local css stylesheet -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="none" onload="this.media='all';">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
@@ -29,6 +26,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
+    <script src="assets/js/raphael-2.1.4.min.js"></script>
+    <script src="assets/js/justgage.js"></script>
 
     <!-- BOOTSTRAP START -->
     <!-- Latest compiled and minified CSS -->
@@ -36,5 +35,5 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-    <title><?= $pagetitle ?></title>
+    <title><?php echo $pagetitle ?></title>
 </head>

@@ -3,17 +3,17 @@
 function get_algo($miner, $flag = NULL) {
 	if($miner!='ccminer'){
 		switch($miner){
-			case 'claymore': $algo = 'DaggerHash';
+			case 'claymore': $algo = 'Ethash';
 				break;
-			case 'ethminer': $algo = 'DaggerHash';
+			case 'ethminer': $algo = 'Ethash';
 				break;
-			case 'ewbf-zcash': $algo = 'EquiHash';
+			case 'ewbf-zcash': $algo = 'Equihash';
 				break;
-			case 'claymore-zcash': $algo = 'EquiHash';
+			case 'claymore-zcash': $algo = 'Equihash';
 				break;
 			case 'sgminer-gm-xmr': $algo = 'CryptoNight';
 				break;
-			case 'optiminer-zcash': $algo = 'EquiHash';
+			case 'optiminer-zcash': $algo = 'Equihash';
 				break;
 			case 'cgminer-skein': $algo = 'Skein-SHA2';
 				break;
@@ -151,9 +151,9 @@ function get_algo($miner, $flag = NULL) {
 function algoUnits($algo){
 	
 		switch($algo){
-			case 'DaggerHash' : $unit = 'Mh/s';
+			case 'Ethash' : $unit = 'MH/s';
 				break;
-			case  'EquiHash': $unit = 'Sol/s';
+			case  'Equihash': $unit = 'Sol/s';
 				break;
 			case  'CryptoNight': $unit = 'H/s';
 				break;

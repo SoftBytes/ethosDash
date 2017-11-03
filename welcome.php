@@ -4,31 +4,29 @@
 	 $lang= $_GET["lang"];
  }else{
 	$lang= "en";
- }
+ } 
 ?>
-<html lang="<?= $lang ?>">
+<html lang="<?php echo $lang ?>">
 <?php
 	require("helpers/langproc.php");
-
-	$page = new getlangString($lang, "welcome");
-	$pagecontent = $page->getPageContent();
-	$pagetitle = $page->getPageTitle();
-
-
+	require("bin/service.php");
+	
+	$pagelang = new getlangString($lang, "welcome");
+	$pagecontent = $pagelang->getPageContent();
+	$pagetitle = $pagelang->getPageTitle();
+	
+	
+	  
 //render html head section
 include("inc/head.php");
 ?>
 <body>
 <?php
-
-
-
+	
 include("inc/topnav.php");
 include("inc/intro.php");
 include("inc/login.php");
-include("inc/jQueryBootstrapCDNs.php");
-include("inc/loginFunction.php");
-
+include("inc/footer.php");
 
 ?>
 </body>
