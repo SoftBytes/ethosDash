@@ -6,7 +6,7 @@
 /*                  JSON data analysing                      */
 /************************************************************/
 
-class analyseGPU{
+class analyseJSON{
 	
 	function powerEfficiency($gpuwatts, $minerhashes, $gpus, $miner_instances){
 		
@@ -92,6 +92,15 @@ class analyseGPU{
 			$tooltip.="GPU".$key.": ".$value."\r\n";
 		}
 		return $tooltip;
+	}
+	
+	function totalPower($all_rigs){
+		$total_power=0;
+		foreach($all_rigs as $rigdata){
+			
+			$total_power+=rigPower($rigdata["watts"], $rigdata["gpus"]);
+		}
+		return $total_power;
 	}
 	
 }

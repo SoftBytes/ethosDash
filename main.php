@@ -22,6 +22,8 @@ else $ethos_id= $_GET["id"];
 	require("controller/ethosclient.php");
 	require("helpers/algos.php");
 	require("view/mainview.php");
+	//include controller file for analysing rigs/gpus
+	require("controller/datalyser.php");
 
 	  
 	//language controller class
@@ -36,6 +38,7 @@ else $ethos_id= $_GET["id"];
 	$url= $o->getURL();
 	$o->sendRequest($url); 
 	$ethos_response =  $o->response_content;
+	
 	  
 
 	  

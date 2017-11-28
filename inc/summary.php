@@ -23,7 +23,15 @@
 
 </div>
 <!-- Total Power, Avg. Temperature-->
+	<?php
+		
+		$plabels = array("total_power"=>$pagecontent["label7"],"spent_on_power"=>$pagecontent["label7"]);
+		
+		
+	?>
 <div>
+	
+
 </div>	
 	<?php	
 		$miners_summary = $alldata['per_info'];

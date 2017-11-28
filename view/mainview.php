@@ -4,10 +4,8 @@
 /*************************************************************/
 // Process HTML for main.php page
 
-//include controller file for analysing rigs/gpus
-require("controller/datalyser.php");
-
 class summaryBlock{
+	
 	function summaryMiner($miner, $algo, $label1){
 		
 		echo '
@@ -51,10 +49,36 @@ class summaryBlock{
 		<div  class="summary_block">
 		      <div class="summary_miner">            
 			  <h6>'.$labels["rigs"].':</h6>
-				<h3 class="hash_mining"  data-toggle="tooltip" title="'.$labels["total_alive"].'">'.$totals["total_rigs"].'/'.$totals["alive_rigs"].'</h3>
+				<h3 class="hash_mining"  data-toggle="tooltip" title="'.$labels["total_alive"].'">'.$totals["alive_rigs"].'/'.$totals["total_rigs"].'</h3>
 				
 				<h6>'.$labels["gpus"].':</h6>
-				<h3 class="hash_mining" data-toggle="tooltip" title="'.$labels["total_alive"].'">'.$totals["total_gpus"].'/'.$totals["alive_gpus"].'</h3>
+				<h3 class="hash_mining" data-toggle="tooltip" title="'.$labels["total_alive"].'">'.(is_null($totals["alive_gpus"])?"0":$totals["alive_gpus"]).'/'.$totals["total_gpus"].'</h3>
+              </div>
+		</div>
+		';	
+			//  '.($totals["alive_rigs"] < $totals["total_rigs"]?'alive_units_low':'alive_units_max').'           
+
+	}
+	
+		function totalPower($totals, $labels){
+
+		echo '
+		<div  class="summary_block">
+		      <div class="summary_miner">
+            <h6>'.$labels["hashrate"].':</h6>  
+            <h3 class="hash_mining">'.$totals["hashrate"].'</h3>
+			<h6>'.$labels["capacity"].':</h6>
+			<h3 class="hash_mining">'.$totals["capacity"].'%</h3>
+			
+              </div>
+		</div>
+		<div  class="summary_block">
+		      <div class="summary_miner">            
+			  <h6>'.$labels["rigs"].':</h6>
+				<h3 class="hash_mining"  data-toggle="tooltip" title="'.$labels["total_alive"].'">'.$totals["alive_rigs"].'/'.$totals["total_rigs"].'</h3>
+				
+				<h6>'.$labels["gpus"].':</h6>
+				<h3 class="hash_mining" data-toggle="tooltip" title="'.$labels["total_alive"].'">'.$totals["alive_gpus"].'/'.$totals["total_gpus"].'</h3>
               </div>
 		</div>
 		';	
@@ -66,6 +90,7 @@ class summaryBlock{
 	
 }
 class rigsTable{
+	
 	
 		function rigslistHeader(){
 			
@@ -89,17 +114,17 @@ class rigsTable{
 				//condition options: mining, unreachable, rofs, no_hash, overload
 				if($rigstats["condition"]!="unreachable"){
 					
-					$gpu_info = new analyseGPU();
+					$datalyser = new analyseJSON();
 
 					$renderhtml = '<div class="riglist_row">
 									<div class="riglist_cell table_driver" data-toggle="tooltip" title="'.$rigstats["meminfo"].'"><span class="'.$rigstats["driver"].'">&nbsp;</span></div>
 									<div class="riglist_cell table_rigloc" data-toggle="tooltip" title="'.$rigstats["condition"].'"><span>'.$rigname.'</span><br/><span>'.$rigstats["rack_loc"].'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>
 									<div class="riglist_cell table_miner"><span class="miner">'.$rigstats["miner"].'</span></div>
-									<div class="riglist_cell table_hash hash_mining"  data-toggle="tooltip" title="Hashrate: '.$gpu_info->getTooltip($rigstats["miner_hashes"]).'"><span>'.$rigstats["hash"].'</span></div>
-									<div class="riglist_cell table_power power_consumes" data-toggle="tooltip" title="Power Usage: '.$gpu_info->getTooltip($rigstats["watts"]).'"><span>'.$gpu_info->rigPower($rigstats["watts"],$rigstats["gpus"]).'</span></div>
-									<div class="riglist_cell table_power"><span>'.$gpu_info->powerEfficiency($rigstats["watts"],$rigstats["miner_hashes"],$rigstats["gpus"],$rigstats["miner_instance"]).'</span></div>
-					<div class="riglist_cell gauge" id="'.$rigname.'_temp" data-toggle="tooltip" title="Temperature: '.$gpu_info->getTooltip($rigstats["temp"]).'">'.$this->tempGauge($rigname,$gpu_info->avgTemp($rigstats["temp"])).'</div>
-									<div class="riglist_cell table_fanrpm" data-toggle="tooltip" title="Fan Speed: '.$gpu_info->getTooltip($rigstats["fanrpm"]).'"><span>'.$gpu_info->avgTemp($rigstats["fanrpm"]).'</span></div>
+									<div class="riglist_cell table_hash hash_mining"  data-toggle="tooltip" title="Hashrate: '.$datalyser->getTooltip($rigstats["miner_hashes"]).'"><span>'.$rigstats["hash"].'</span></div>
+									<div class="riglist_cell table_power power_consumes" data-toggle="tooltip" title="Power Usage: '.$datalyser->getTooltip($rigstats["watts"]).'"><span>'.$datalyser->rigPower($rigstats["watts"],$rigstats["gpus"]).'</span></div>
+									<div class="riglist_cell table_power power_eff"><span>'.$datalyser->powerEfficiency($rigstats["watts"],$rigstats["miner_hashes"],$rigstats["gpus"],$rigstats["miner_instance"]).'</span></div>
+					<div class="riglist_cell gauge" id="'.$rigname.'_temp" data-toggle="tooltip" title="Temperature: '.$datalyser->getTooltip($rigstats["temp"]).'">'.$this->tempGauge($rigname,$datalyser->avgTemp($rigstats["temp"])).'</div>
+									<div class="riglist_cell table_fanrpm" data-toggle="tooltip" title="Fan Speed: '.$datalyser->getTooltip($rigstats["fanrpm"]).'"><span>'.$datalyser->avgTemp($rigstats["fanrpm"]).'</span></div>
 									<div class="riglist_cell table_pool"><span>'.$rigstats["pool"].'</span></div>
 								</div>';
 				}else{
@@ -120,7 +145,7 @@ class rigsTable{
 				
 				/*
 				<div class="riglist_cell table_power"><strong>Efficiency</strong></div>
-				<div class="riglist_cell table_power"><span>'.$gpu_info->powerEfficiency($rigstats["watts"],$rigstats["miner_hashes"],$rigstats["gpus"]).'</span></div>
+				<div class="riglist_cell table_power"><span>'.$datalyser->powerEfficiency($rigstats["watts"],$rigstats["miner_hashes"],$rigstats["gpus"]).'</span></div>
 				*/
 
 			echo $renderhtml;
