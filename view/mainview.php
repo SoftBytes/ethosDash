@@ -93,8 +93,9 @@ class rigsTable{
 	
 	
 		function rigslistHeader(){
-			
+			/*
 			echo '<div class="riglist_row">
+				<div class="riglist_cell table_status"><strong>GPU#</strong></div>
 				<div class="riglist_cell table_driver"><strong>GPU#</strong></div>
 				<div class="riglist_cell table_rigloc"><strong>Rig-Loc-IP</strong></div>
 				<div class="riglist_cell table_miner"><strong>Miner/GPUs</strong></div>
@@ -105,7 +106,7 @@ class rigsTable{
 				<div class="riglist_cell table_fanrpm"><strong>Fan (RPMx1000)</strong></div>
 				<div class="riglist_cell table_pool"><strong>Pool</strong></div>
 			</div>';
-			
+			*/
 			
 		}
 	
@@ -117,21 +118,23 @@ class rigsTable{
 					$datalyser = new analyseJSON();
 
 					$renderhtml = '<div class="riglist_row">
+									<div class="riglist_cell table_status '.($rigstats["condition"]=="mining"?'liverig':'slowrig').'" data-toggle="tooltip" title="'.$rigstats["condition"].'"></div>
+									<div class="riglist_cell table_rigloc"><span>'.$rigname.'</span><br/><span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>
 									<div class="riglist_cell table_driver" data-toggle="tooltip" title="'.$rigstats["meminfo"].'"><span class="'.$rigstats["driver"].'">&nbsp;</span></div>
-									<div class="riglist_cell table_rigloc" data-toggle="tooltip" title="'.$rigstats["condition"].'"><span>'.$rigname.'</span><br/><span>'.$rigstats["rack_loc"].'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>
 									<div class="riglist_cell table_miner"><span class="miner">'.$rigstats["miner"].'</span></div>
 									<div class="riglist_cell table_hash hash_mining"  data-toggle="tooltip" title="Hashrate: '.$datalyser->getTooltip($rigstats["miner_hashes"]).'"><span>'.$rigstats["hash"].'</span></div>
 									<div class="riglist_cell table_power power_consumes" data-toggle="tooltip" title="Power Usage: '.$datalyser->getTooltip($rigstats["watts"]).'"><span>'.$datalyser->rigPower($rigstats["watts"],$rigstats["gpus"]).'</span></div>
 									<div class="riglist_cell table_power power_eff"><span>'.$datalyser->powerEfficiency($rigstats["watts"],$rigstats["miner_hashes"],$rigstats["gpus"],$rigstats["miner_instance"]).'</span></div>
 					<div class="riglist_cell gauge" id="'.$rigname.'_temp" data-toggle="tooltip" title="Temperature: '.$datalyser->getTooltip($rigstats["temp"]).'">'.$this->tempGauge($rigname,$datalyser->avgTemp($rigstats["temp"])).'</div>
-									<div class="riglist_cell table_fanrpm" data-toggle="tooltip" title="Fan Speed: '.$datalyser->getTooltip($rigstats["fanrpm"]).'"><span>'.$datalyser->avgTemp($rigstats["fanrpm"]).'</span></div>
+									<div id="'.$rigname.'_fan" class="riglist_cell table_fanrpm gauge" data-toggle="tooltip" title="Fan Speed: '.$datalyser->getTooltip($rigstats["fanrpm"]).'"><span>'.$this->fanGauge($rigname,$datalyser->avgTemp($rigstats["fanrpm"])).'</span></div>
 									<div class="riglist_cell table_pool"><span>'.$rigstats["pool"].'</span></div>
 								</div>';
 				}else{
 					
 					$renderhtml = '<div class="riglist_row">
+									<div class="riglist_cell table_status deadrig" data-toggle="tooltip" title="'.$rigstats["condition"].'"></div>
+									<div class="riglist_cell table_rigloc"><span>'.$rigname.'</span><br/><span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><span class="in_brackets">'.$rigstats["ip"].'</span></div>
 									<div class="riglist_cell table_driver" data-toggle="tooltip" title="'.$rigstats["meminfo"].'"><span class="'.$rigstats["driver"].'">&nbsp;</span></div>
-									<div class="riglist_cell table_rigloc" data-toggle="tooltip" title="'.$rigstats["condition"].'"><span>'.$rigname.'</span><br/><span>'.$rigstats["rack_loc"].'</span><br/><span class="in_brackets">'.$rigstats["ip"].'</span></div>
 									<div class="riglist_cell table_miner"><span class="miner">'.$rigstats["miner"].'</span></div>
 									<div class="riglist_cell table_hash"><span>n/a</span></div>
 									<div class="riglist_cell table_power"><span>n/a</span></div>
@@ -153,7 +156,7 @@ class rigsTable{
 			}
 		}
 	function tempGauge($rigname, $agvtemp){
-		
+		/*
 		echo '
 		    <script>
 			document.addEventListener("DOMContentLoaded", function(event) {
@@ -189,6 +192,61 @@ class rigsTable{
 
 			});
 			</script>';
+		*/
+		echo "
+			<script>
+		      google.charts.load('current', {'packages':['gauge']});
+			  google.charts.setOnLoadCallback(drawChart1);
+
+			  function drawChart1() {
+
+				var data1 = google.visualization.arrayToDataTable([
+				  ['Label', 'Value'],
+				  ['Temp', ".$agvtemp."]
+				]);
+
+				var options1 = {
+				  width: 100, height: 100,
+				  redFrom: 75, redTo: 100,
+				  yellowFrom:65, yellowTo: 75,
+				  majorTicks: ['0', '65', '75', '100'],
+				  minorTicks: 5
+				};
+				var chart1 = new google.visualization.Gauge(document.getElementById('".$rigname."_temp'));
+				chart1.draw(data1, options1);
+      		}
+			</script>'";
+		
+	}
+	
+	function fanGauge($rigname, $agvfan){
+
+		echo "
+			<script>
+		      google.charts.load('current', {'packages':['gauge']});
+			  google.charts.setOnLoadCallback(drawChart2);
+
+			  function drawChart2() {
+
+				var data2 = google.visualization.arrayToDataTable([
+				  ['Label', 'Value'],
+				  ['Fan', ".round($agvfan/1000,2)."]
+				]);
+
+				var options2 = {
+				  width: 100, height: 100,
+				  greenFrom: 1, greenTo: 3,
+				  redFrom: 4, redTo: 5,
+				  yellowFrom:3, yellowTo: 4,
+				  majorTicks: ['1', '2', '3', '4', '5'],
+				  minorTicks: 1,
+				  min: 0,
+				  max: 5
+				};
+				var chart2 = new google.visualization.Gauge(document.getElementById('".$rigname."_fan'));
+				chart2.draw(data2, options2);
+      		}
+			</script>'";
 		
 	}
 }

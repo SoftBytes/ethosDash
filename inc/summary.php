@@ -1,4 +1,4 @@
-<div id="intro" class="jumbotron jumbotron-fluid text-center text-white">
+<div id="intro" class="jumbotron jumbotron-fluid text-white">
  
  <?php
 
@@ -6,7 +6,7 @@
 	else{
 		?>
   <!-- <h1><?php //echo $pagecontent["summary"] ?></h1>-->
-  <h3><?php echo $pagecontent["summary"] ?></h3><br/>
+  <h5><?php echo $pagecontent["summary"] ?></h5>
   
   <?php
 		$s = new summaryBlock();

@@ -16,16 +16,37 @@ body{
 .amdgpu, .fglrx {
 	color: #B30002 !important;
 }
-.amdgpu:before,
-.fglrx:before
+.amdgpu:after,
+.fglrx:after
 {
 	content: url(../images/amd_radeon.png);
+	position: relative;
+
+
+}
+.nvidia:after {
+	content: url(../images/nvidia-geforce.png);
+	position: relative;
+
+
+}
+
+.liverig:before {
+	content: url(../images/green-lit.svg);
+	max-height: 67px;
 	position: relative;
 	top: 5px;
 
 }
-.nvidia:before {
-	content: url(../images/nvidia-geforce.png);
+
+.slowrig:before {
+	content: url(../images/orange-lit.svg);
+	position: relative;
+	top: 5px;
+
+}
+.deadrig:before {
+	content: url(../images/red-lit.svg);
 	position: relative;
 	top: 5px;
 
@@ -127,6 +148,8 @@ th {
 }
 #intro{
 	background-color: #018e64;
+	padding: 15px !important;
+		
 }
 .easy_steps, .ethOS_panel_locked{
 	display: inline-block; 
@@ -212,13 +235,17 @@ float: left;*/
 	vertical-align: middle;
 
 }
+.table_status{
+	width: 25px;
+	
+}
 
 .table_rigloc{
-	width: 150px;
+	width: 120px;
 	
 }
 .table_driver{
-	width: 150px;
+	width: 120px;
 
 }
 
@@ -231,6 +258,10 @@ float: left;*/
 .table_hash{
 	width: 160px;
 	
+}
+.rack_loc{
+	color: white;
+	text-transform: uppercase;
 }
 .hash_mining{
 	font-size: 40px;
@@ -251,13 +282,19 @@ float: left;*/
 }
 
 .table_power{
-	width: 160px;
+	width: 120px;
 
 }
 .power_consumes{
 	font-size: 40px;
 	font-family: digital;
 	color:crimson;
+}
+
+.power_eff{
+	font-size: 40px;
+	font-family: digital;
+	color:gold;
 }
 .table_temp{
 	width: 120px;
@@ -295,17 +332,17 @@ float: left;*/
 	color: crimson !important;
 }
 .table_fanrpm{
-	width: 200px;	
+	width: 120px;	
 }
 .table_pool{
-	width: 300px;	
+	width: 200px;	
 }
 .gauge{
       width: 120px;
       height: 90px;
 	position: relative;
 	top: -20px;
-	left: -30px;
+	left: -10px;
 }
 
 
