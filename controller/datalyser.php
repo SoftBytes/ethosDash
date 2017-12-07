@@ -8,6 +8,22 @@
 
 class analyseJSON{
 	
+	 function sumbyAlgo($minershash){
+		 $algos=array();
+		 $algo_key='';
+		 foreach($minershash as $key=>$value){
+			 $algo_key=get_algo($key);
+			 if (isset($algos[$algo_key])) $algos[$algo_key]+=$value['per_hash-rig'];
+			 else {
+				 $algos[$algo_key]=0;
+				 $algos[$algo_key]+=$value['per_hash-rig'];
+			 }
+			 
+		 }
+		 
+		 return $algos;
+	 }
+	
 	function powerEfficiency($gpuwatts, $minerhashes, $gpus, $miner_instances){
 		
 		//this is for AMD cards that don't report watts/usage instead we use approximate value of 100Wt
@@ -72,7 +88,7 @@ class analyseJSON{
 				$total_power +=$consuming;
 			}
 		}
-		return $total_power;
+		return round($total_power,0);
 	}
 	
 	function fanRPM($fanrpm){
@@ -92,6 +108,33 @@ class analyseJSON{
 			$tooltip.="GPU".$key.": ".$value."\r\n";
 		}
 		return $tooltip;
+	}
+	
+	function getTempArray($datastring){
+		$GPU_NUM = 1;
+		$tempArray = array();
+		$data_array= explode(" ",$datastring);
+		foreach($data_array as $key=>$value){
+			
+			$tempArray[]=array("letter"=>$GPU_NUM, "frequency"=>round($value,0), "class"=>"t".round($value,0));
+			//$tooltip.="GPU".$key.": ".$value."\r\n";
+			$GPU_NUM++;
+		}
+		return $tempArray;
+			
+
+	}
+	
+		function getFanArray($datastring){
+		$GPU_NUM = 1;
+		$fanArray = array();
+		$data_array= explode(" ",$datastring);
+		foreach($data_array as $key=>$value){
+			$fanArray[]=array("id"=>$GPU_NUM, "order"=>1, "score"=>round($value,0), "weight"=> 1, "class"=>"t".round($value,0), "label"=> "GPU".$GPU_NUM);
+			//$tooltip.="GPU".$key.": ".$value."\r\n";
+			$GPU_NUM++;
+		}
+		return $fanArray;
 	}
 	
 	function totalPower($all_rigs){

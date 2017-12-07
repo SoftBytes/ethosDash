@@ -1,4 +1,4 @@
-<div id="intro" class="jumbotron jumbotron-fluid text-white">
+<div id="intro" class="jumbotron jumbotron-fluid text-white text-center">
  
  <?php
 
@@ -6,11 +6,10 @@
 	else{
 		?>
   <!-- <h1><?php //echo $pagecontent["summary"] ?></h1>-->
-  <h5><?php echo $pagecontent["summary"] ?></h5>
+  <!-- <h5><?php //echo $pagecontent["summary"] ?></h5>-->
   
   <?php
-		$s = new summaryBlock();
-		
+
 		
 		$tlabels = array("hashrate"=>$pagecontent["label7"],"gpus"=>$pagecontent["label5"],"total_alive" =>$pagecontent["label4"], "rigs"=>$pagecontent["label3"],"capacity"=>$pagecontent["label12"]);
 		
@@ -19,9 +18,19 @@
 <!-- Tital Hash, Capacity, Ris and GPus -->
 	<div>
 
-	<?php $s->totalInfo($tvalues, $tlabels) ?>
+	<?php 
+		
+		$s->totalInfo($tvalues, $tlabels) ;
+		
+		$s->sumhashInfo($stats->sumbyAlgo($alldata['per_info']));?>
 
-</div>
+	</div>
+	<!-- <div>
+
+		<?php //$s->sumhashInfo($stats->sumbyAlgo($alldata['per_info'])); ?>
+
+	</div>
+	-->
 <!-- Total Power, Avg. Temperature-->
 	<?php
 		
@@ -39,16 +48,16 @@
 		?>
      <div class="summary_wrapper"> 
         <div class="summary_block">
-              
+              <div class="summary_miner">
             <?php 
 					$s->summaryMiner($algo_miner, get_algo($algo_miner), $pagecontent["label1"]); 
             		$s->summaryInfo($pagecontent["label2"], $sum_info["hash"], NULL , algoUnits(get_algo($algo_miner))); 
-            		$s->summaryInfo($pagecontent["label3"], $sum_info["per_alive_rigs"]."/".$sum_info["per_total_rigs"], $pagecontent["label4"]);
-					$s->summaryInfo($pagecontent["label5"], $sum_info["per_alive_gpus"]."/".$sum_info["per_total_gpus"], $pagecontent["label4"]);
-					$s->summaryInfo($pagecontent["label6"], date('H:i d/m', $sum_info["current_time"])); 
+            		//$s->summaryInfo($pagecontent["label3"], $sum_info["per_alive_rigs"]."/".$sum_info["per_total_rigs"], //$pagecontent["label4"]);
+					//$s->summaryInfo($pagecontent["label5"], $sum_info["per_alive_gpus"]."/".$sum_info["per_total_gpus"], //$pagecontent["label4"]);
+					//$s->summaryInfo($pagecontent["label6"], date('H:i d/m', $sum_info["current_time"])); 
 			
 			?>
-              
+                 </div>
          </div> 
         
 	   	</div> 

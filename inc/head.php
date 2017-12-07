@@ -13,7 +13,10 @@
     <!-- link to local css stylesheet -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+	<!-- D3.js -->
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/d3-style.css">
 
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 
@@ -29,6 +32,8 @@
     <script src="assets/js/raphael-2.1.4.min.js"></script>
     <script src="assets/js/justgage.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script src="assets/js/gauge-svg.js"></script>
+ <link rel="stylesheet" type="text/css" href="assets/css/gauge-svg.css">
     <!-- BOOTSTRAP START -->
     <!-- Latest compiled and minified CSS -->
     <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> -->

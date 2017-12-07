@@ -57,6 +57,8 @@ include("inc/topnav.php");
 		$alldata= $ethos_response;
 		//UI Summary Handler
 		//$s = new summaryBlock();
+		$s = new summaryBlock();
+		$stats = new analyseJSON();
 		include("inc/summary.php");
 		include("inc/rigslist.php");
 		
