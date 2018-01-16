@@ -20,10 +20,21 @@
 			"label9" : "Total GPUs",
 			"label10" : "Alive Rigs",
 			"label11" : "Total Rigs",
-			"label12" : "Capacity",
+			"label12" : "Workload",
 			"label13" : "ethOS Panel's API is not available.",
-			"label14" : "Most likeley your ethOS panel is pending verification and has been locked from using API. We appoligise for any inconvinience, bit it's beyond our control.",
+			"label14" : "Most likeley your ethOS panel is pending verification and has been locked from using API. We appoligise for any inconvinience, but it's beyond our control.",
 			"label15" : "Check",
-			"label16" : "panel for more details."
+			"label16" : "panel for more details.",
+			"label17": "Power",
+			"label18": "rpm",
+			"label19":"Pool",
+			"label20": "*C",
+			"label21": "Miners",
+			"efficiency": "Eff:",
+			"label22": "Heat & Coolers",
+			"label23": "Rig Info",
+			"label24": "Mobo",
+			"label25": "version",
+			"label26": "RAM"
 		}
 }

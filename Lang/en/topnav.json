@@ -1,0 +1,13 @@
+{
+	"data": 
+		{
+			"title": "Welcome",
+			"menu1": "Main",
+			"menu2": "Contact",
+			"menu3": "About US",
+			"menu4": "Exit",
+			"login_title" : "Please enter",
+			"login_placeholder" : "ETHOS ID",
+			"login_button" : "GO"
+		}
+}

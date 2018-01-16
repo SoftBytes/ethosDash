@@ -1,0 +1,15 @@
+{
+	
+	"data":
+		{
+			"title": "О нас",
+			"menu1": "Главная",
+			"menu2": "Контакт",
+			"menu3": "О нас",
+			"menu4": "Выход",
+			"ethOS": "эфОС",
+			"login_title" : "Введите",
+			"login_placeholder" : "Номер эфОС",
+			"login_button" : "Войти"
+		}
+}

@@ -14,7 +14,7 @@ class summaryBlock{
 
 	function minerPool($miner){
 		foreach($miner as $minerpool=>$info){
-			$pool_link=substr($minerpool, 0,strlen($minerpool));
+			$pool_link=substr($minerpool, strpos($minerpool,".")+1,strlen($minerpool));
 			//$hash=0;
 			echo '<h5><a class="pool_link" href="http://'.$pool_link.'"  target="new">'.$minerpool.'</a></h5>';
 /*				foreach($info as $rig=>$hashrate){
@@ -27,11 +27,7 @@ class summaryBlock{
 
 		echo '
             <h5>'.$labels["hashrate"].':</h5>  
-            <h3 id="sum_hash" class="hash_mining">'.$totals["hashrate"].'&nbsp;<span class="hash_mining hash_mining_units">xH/s</span></h3>
-			<h5>'.$labels["capacity"].':</h5>  
-            <h3 id="capacity" class="hash_mining">'.$totals["capacity"].'&nbsp;<span class="hash_mining hash_mining_units">%</span></h3>
-			<h5>'.$labels["sum_power"].':</h5>  
-            <h3 id="sum_power" class="hash_mining">'.$totals["sum_power"].'&nbsp;<span class="hash_mining hash_mining_units">kWts</span></h3>
+            <h3 class="hash_mining">'.$totals["hashrate"].'&nbsp;<span class="hash_mining hash_mining_units">xH/s</span></h3>
 	';
 }
 	
@@ -122,133 +118,60 @@ class rigsTable{
 		}
 	
 		function poolLink($pool){
-				$pool_link=substr($pool, 0,strpos($pool,":"));
+				$pool_link=substr($pool, strpos($pool,".")+1,strpos($pool,":")-strpos($pool,".")-1);
 				return '<a class="pool_link" href="http://'.$pool_link.'"  target="new">'.$pool_link.'</a>';
 
 		}
-
+	
 		function displayGPUinfo($gpuinfo, $gpunum){
 			$gpulist=array();
-			$html='<div class="gpu_info_div">';
+			$html='';
 			if(sizeof($gpuinfo)>1){
-				
-				$record_num = 1;
-				foreach($gpuinfo as $key=>$gpuname){
-					if($record_num == 4 || $record_num==8 || $record_num==12 || $record_num==16 || $record_num==20){
-						$html.='#'.$key.' '.$gpuname.'</div>';
-							if($record_num < sizeof($gpuinfo)) $html.='<div class="gpu_info_div">';
-					}
-					else{ 
-						$html.='#'.$key.' '.$gpuname;
-						if($record_num < sizeof($gpuinfo)) $html.='<br/>';
-						else $html.='</div>';
-					}
-					$record_num++;
-					/*if(!isset($gpulist[$gpuname])) $gpulist[$gpuname]=1;
-					else $gpulist[$gpuname]+=1;					
-						//if($key<(sizeof($gpuinfo)-1)) $gpulist.=', ';
-				}
-				/*foreach($gpulist as $name=>$many)
-					$html.=$many.' x '.$name.'<br/>';*/
-				//$html.=str_replace(" ","-",$gpuname).' ';
-				}
-			}else{
-					$html.='#'.$gpunum.' '.$gpuinfo[0]."</div>";
-				}
-			return $html;
-		}
-	function displayGPUsummary($gpuinfo, $gpunum){
-			$gpulist=array();
-			$html='<div class="gpu_info_div">';
-			if(sizeof($gpuinfo)>1){
-
 				foreach($gpuinfo as $key=>$gpuname){
 					if(!isset($gpulist[$gpuname])) $gpulist[$gpuname]=1;
 					else $gpulist[$gpuname]+=1;					
 						//if($key<(sizeof($gpuinfo)-1)) $gpulist.=', ';
 				}
-				
-				$i=1; //counter
-				foreach($gpulist as $name=>$many){
-					
-					$html.=str_replace("_","",$name).'<span class="stats_label">(</span><span class="stats_detail">'.$many;
-					if($i < sizeof($gpulist)) $html.='</span><span class="stats_label">), </span>';
-					else $html.='</span><span class="stats_label">)</span>';
-					$i++;
-				}
-					
-
+				foreach($gpulist as $name=>$many)
+					$html.=$many.' x '.$name.'<br/>';
 			}else{
-					$html.=str_replace("_","",$gpuinfo[0]);
+					$html.=$gpunum.' '.$gpuinfo[0];
 				}
-			return $html."</div>";
-		}
-	
-	function get_date($format="r", $timestamp=false, $timezone=false)
-		{
-			$userTimezone = $timezone;
-			$gmtTimezone = new DateTimeZone('GMT');
-			$myDateTime = new DateTime(($timestamp!=false?date("r",(int)$timestamp):date("r")), $gmtTimezone);
-			$offset = $userTimezone->getOffset($myDateTime);
-			return date($format, ($timestamp!=false?(int)$timestamp:$myDateTime->format('U')) + $offset);
+			return $html;
 		}
 	
 		function rigslist($per_rig_info){
 			$datalyser = new analyseJSON();
 			$gpuinfo = $datalyser->getAllGPU($per_rig_info);
-			
 			foreach($per_rig_info as $rigname=>$rigstats){
-				$wattsinfo = $datalyser->rigPower($rigstats["watts"],$gpuinfo[$rigname],$rigstats["gpus"]);
-
 				//condition options: mining, unreachable, rofs, no_hash, overload
 				if($rigstats["condition"]!="unreachable"){
 					
-					//rig row div
-					$renderhtml = '<div id="'.$rigname.'" style="visibility:visible" class="riglist_row">';
-					
-					//rig status
-					$renderhtml.='<div class="riglist_cell table_status" data-toggle="tooltip" title="'.$rigstats["condition"].'"><div class="setrig"><img src="assets/images/gear.svg" style="text"></div><div class="statusrig"><img src="assets/images/'.($rigstats["condition"]=="mining"?'green':'orange').'_light.svg" style="text"></div></div>';
+					//$datalyser = new analyseJSON();
+
+					$renderhtml = '<div class="riglist_row">
+									<div class="riglist_cell table_status '.($rigstats["condition"]=="mining"?'liverig':'slowrig').'" data-toggle="tooltip" title="'.$rigstats["condition"].'"></div>';
 					if($rigstats["rack_loc"]){
 						$renderhtml .=	'<div class="riglist_cell table_rigloc">
-									<div class="chipset_holder"><img src="assets/images/'.($rigstats["driver"]=="nvidia"?'geforce':'radeon').'.svg" width="90" style="text"></div><span class="rig_name">'.$rigstats["rack_loc"].'</span><br/>
-									<span class="status">'.$rigstats["condition"].'</span><br/>
-									<span  class="ip in_brackets">'.$rigstats["ip"].'</span></div>';
+									<span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><img src="assets/images/'.($rigstats["driver"]=='nvidia'?'nvidia_geforce':'amd_radeon').'.png"></div>';
 					}else{
 						$renderhtml .=	'<div class="riglist_cell table_rigloc">
-									<div class="chipset_holder"><img src="assets/images/'.($rigstats["driver"]=="nvidia"?'geforce':'radeon').'.svg" width="90" style="text"></div><span class="rig_name">'.$rigname.'</span><br/>
-									<span class="status">'.$rigstats["condition"].'</span><br/><span  class="ip in_brackets">'.$rigstats["ip"].'</span></div>';
+									<span class="rack_loc">'.$rigname.'</span><br/><img src="assets/images/'.($rigstats["driver"]=='nvidia'?'nvidia_geforce':'amd_radeon').'.png"></div>';
 					}				
-					/*$renderhtml .=	'<div class="riglist_cell table_rigloc">
-									<span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><span>'.$rigname.'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>';*/
+
+									/*
+									<div class="riglist_cell table_driver" data-toggle="tooltip" title="'.$rigstats["meminfo"].'"><span class="'.$rigstats["driver"].'">&nbsp;</span></div>
+									*/
+									
+					$renderhtml .='<div class="riglist_cell table_hash"  data-toggle="tooltip" title="Hashrate: '.$datalyser->getTooltip($rigstats["miner_hashes"]).'"><span class="rack_loc">'.$rigstats["miner"].'</span><br/><span class=" hash_mining">'.$rigstats["hash"].'</span> <span class="hash_mining hash_mining_units">'.algoUnits(get_algo($rigstats["miner"])).'</span><br/><span>'.$this->poolLink($rigstats["pool"]).'</span></div>';
 					
-					//Miner and Hashing 
-					$renderhtml .='<div class="riglist_cell table_hash"  data-toggle="tooltip" title="Hashrate: '.$datalyser->getTooltip($rigstats["miner_hashes"]).'"><span class="rack_loc">'.$rigstats["miner"].'</span><br/><span class=" hash_mining">'.$rigstats["hash"].'</span> <span class="hash_mining hash_mining_units">'.algoUnits(get_algo($rigstats["miner"])).'</span><br/><span>'.$this->poolLink($rigstats["pool"]).'</span></div>
-					<div class="riglist_cell table_power" data-toggle="tooltip" title="Power Usage: '.$datalyser->getTooltip($rigstats["watts"]).'"><span class="rack_loc">'.$this->labels["label17"].'</span><br/>
-					<span class="power_consumes">'.$wattsinfo.'</span><span class="power_consumes_units"> kWts</span><div class="power_eff_div"><span>'.$this->labels["efficiency"].' </span><span class="power_eff">'.$datalyser->powerEfficiency($wattsinfo,$rigstats["hash"]).' h/Wt</span></div></div>';
-					
-					//temperature and fan graphs
-					$renderhtml .='<div class="riglist_cell table_graphs"><div><span class="rack_loc">'.$this->labels["label22"].'<span></div><div class="tempgraph" id="temp'.$rigname.'"></div><div id="fan'.$rigname.'" class="fangraph"></div>
-					</div>';
-		
-					//rig info			
-		$renderhtml .='<div class="riglist_cell table_stats">
-			<div><span class="rack_loc">'.$this->labels["label23"].'</span></div>					
-			<div>
-				<span class="stats_label">'.$this->labels["label24"].': </span><span  class="stats_detail">'.$rigstats["mobo"].'&nbsp;</span><span class="stats_label">'.$this->labels["label26"].': </span><span  class="stats_detail">'.$rigstats["ram"].'GB</span><br/>
-			     <span class="stats_label">'.$this->labels["label5"].': </span>
-			     <span class="'.$rigstats['driver'].'">'.$this->displayGPUsummary($gpuinfo[$rigname],$rigstats["gpus"]).'</span><br/><span class="stats_label">'.$this->labels["ethOS"].': </span><span class="stats_detail">'.$rigstats["version"].'</span>
-			</div>					
-			<div>
-				  <span><script>timeConverter('.$rigstats["server_time"].')</script></span><br/>
-			</div>
-		</div>
-		</div>';
-					
+					$renderhtml .=	'<div class="riglist_cell table_gpu"><span class="rack_loc">GPU INFO</span><br/><span>'.$this->displayGPUinfo($gpuinfo[$rigname],$rigstats["gpus"]).'</span></div>';
+	
+					$renderhtml .=	'<div class="riglist_cell table_temp"><div><span class="rack_loc">TEMP</span></div><div class="tempgraph" id="temp'.$rigname.'"></div></div>
+					<div class="riglist_cell table_fanrpm"><div><span class="rack_loc">FAN</span></div><div id="fan'.$rigname.'"  class="fangraph"></div></div>
+					<div class="riglist_cell table_power" data-toggle="tooltip" title="Power Usage: '.$datalyser->getTooltip($rigstats["watts"]).'"><span class="rack_loc">'.$this->labels["label17"].'</span><br/><span class="power_consumes">'.$datalyser->rigPower($rigstats["watts"],$gpuinfo[$rigname],$rigstats["gpus"]).'</span><span class="  power_consumes_units"> kWt</span></div>
+								</div>';
 					//<div class="riglist_cell table_power power_eff"><span>'.$datalyser->powerEfficiency($rigstats["watts"],$rigstats["miner_hashes"],$rigstats["gpus"],$rigstats["miner_instance"]).'</span></div>
-					
-					/*<div class="riglist_cell table_driver" data-toggle="tooltip" title="'.$rigstats["meminfo"].'"><span class="'.$rigstats["driver"].'">&nbsp;</span></div>
-					<span class="rack_loc">'.$this->labels["label5"].'</span>
-					*/
 
 					
 				}else{
@@ -257,26 +180,251 @@ class rigsTable{
 									<div class="riglist_cell table_status deadrig" data-toggle="tooltip" title="'.$rigstats["condition"].'"></div>';
 					if($rigstats["rack_loc"]){
 						$renderhtml .=	'<div class="riglist_cell table_rigloc">
-									<span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>';
+									<span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><img src="assets/images/'.($rigstats["driver"]=='nvidia'?'nvidia_geforce':'amd_radeon').'.png"></div>';
 					}else{
 						$renderhtml .=	'<div class="riglist_cell table_rigloc">
-									<span class="rack_loc">'.$rigname.'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>';
+									<span class="rack_loc">'.$rigname.'</span><br/><img src="assets/images/'.($rigstats["driver"]=='nvidia'?'nvidia_geforce':'amd_radeon').'.png"></div>';
 					}				
 					/*$renderhtml .=	'<div class="riglist_cell table_rigloc">
-									<span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><span>'.$rigname.'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>';*/
-									
-					$renderhtml .='<div class="riglist_cell table_hash"  data-toggle="tooltip" title="Hashrate: '.$datalyser->getTooltip($rigstats["miner_hashes"]).'"><span class="rack_loc">'.$rigstats["miner"].'</span><br/><span class=" hash_mining">'.$rigstats["hash"].'</span> <span class="hash_mining hash_mining_units">'.algoUnits(get_algo($rigstats["miner"])).'</span><br/><span>'.$this->poolLink($rigstats["pool"]).'</span></div>
+									<span class="rack_loc">'.$rigstats["rack_loc"].'</span><br/><span>'.$rigname.'</span><br/><span  class="in_brackets">'.$rigstats["ip"].'</span></div>';
+					
 					<div class="riglist_cell table_driver" data-toggle="tooltip" title="'.$rigstats["meminfo"].'"><span class="'.$rigstats["driver"].'">&nbsp;</span></div>
-					</div>';
+									</div>*/
+									
+					$renderhtml .='<div class="riglist_cell table_hash"  data-toggle="tooltip" title="Hashrate: '.$datalyser->getTooltip($rigstats["miner_hashes"]).'"><span class="rack_loc">'.$rigstats["miner"].'</span><br/><span class=" hash_mining">'.$rigstats["hash"].'</span> <span class="hash_mining hash_mining_units">'.algoUnits(get_algo($rigstats["miner"])).'</span><br/><span>'.$this->poolLink($rigstats["pool"]).'</span></div></div>';
 				}
-				//$temp_json = json_encode($datalyser->getTempArray($rigstats["temp"]));
-				$temp_json = json_encode($datalyser->getFanArray($rigstats["temp"]));
-				$fan_json = json_encode($datalyser->getFanArray($rigstats["fanrpm"]));
+						$temp_json = json_encode($datalyser->getTempArray($rigstats["temp"]));
+						$fan_json = json_encode($datalyser->getFanArray($rigstats["fanrpm"]));
 						//echo $temp_json;	
-				$renderhtml .='<script>statsChart("'.$rigname.'","'.$this->labels["label18"].'",'.$fan_json.')</script>';
-				$renderhtml .='<script>statsChart2("'.$rigname.'","'.$this->labels["label20"].'",'.$temp_json.')</script>';
-							
-								/*
+									   
+			$renderhtml .= '<script>
+					var width = 100,
+						height = 100,
+						radius = Math.min(100, 100) / 2,
+						innerRadius = 0.4 * radius,
+						cornerRadius = 5,
+    					padAngle = .03;
+
+					var pie = d3.layout.pie()
+						.sort(null)
+						.value(function(d) { return d.width; });
+
+					var tip = d3.tip()
+					  .attr("class","d3-tip")
+					  .offset([0, 1])
+					  .html(function(d) {
+						return d.data.label + ": <span>" + d.data.score + "</span>";
+					  });
+
+					var arc = d3.svg.arc()
+					  .innerRadius(innerRadius)
+					  .cornerRadius(cornerRadius)
+					  .innerRadius(innerRadius)
+					  .outerRadius(function (d) { 
+						return (radius - innerRadius) * (d.data.score / 4500) + innerRadius; 
+					  });
+
+					var outlineArc = d3.svg.arc()
+							.innerRadius(innerRadius)
+							.outerRadius(radius);
+
+					var svg = d3.select("#fan'.$rigname.'").append("svg")
+						.attr("width", width+1)
+						.attr("height", height+1)
+						.append("g")
+						.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+					svg.call(tip);
+
+					var data= '.$fan_json.';
+					//console.log(data);
+
+					  data.forEach(function(d) {
+						d.id     =  d.id;
+						d.order  = +d.order;
+						d.color  =  d.color;
+						d.weight = +d.weight;
+						//d.score  = +d.score;
+							  if(d.score < 5){
+								  d.score = 10;
+							  }else{
+								  d.score  = +d.score;
+							  }
+						d.width  = +d.weight;
+						d.label  =  d.label;
+
+					  });
+
+					  var path = svg.selectAll(".solidArc")
+						  .data(pie(data))
+						.enter().append("path")
+						 //.attr("fill", function(d) { return d.data.color; })
+					  //.attr("fill", d3.rgb(255, function(d) { return d.data.score; } ,0))
+						  .attr("class", "bar")
+						  .attr("stroke", "#272727")
+						  .attr("fill", "#00FC00")
+						  .attr("stroke-width",2)
+						  .attr("d", arc)
+						  .on("mouseover", tip.show)
+						  .on("mouseout", tip.hide);
+
+					  var outerPath = svg.selectAll(".outlineArc")
+						  .data(pie(data))
+						.enter().append("path")
+						  .attr("fill", "none")
+						  .attr("stroke", "#272727")
+						  .attr("stroke-width",2)
+						  .attr("class", "outlineArc")
+						  .attr("d", outlineArc);  
+
+
+					  // calculate the weighted mean score
+					  var score = 
+						data.reduce(function(a, b) {
+
+						  return a + (b.score * b.weight); 
+						}, 0) / 
+						data.reduce(function(a, b) { 
+						  return a + b.weight; 
+						}, 0);
+
+					  svg.append("svg:text")
+						.attr("class", "aster-score")
+						//.style("color", "white")
+						.attr("dy", ".35em")
+						.attr("text-anchor", "middle") // text-align: right
+						.text("'.$this->labels["label18"].'");
+						//.text(Math.round(score));
+
+				</script>';
+				
+				$renderhtml .='
+				
+				<script>
+
+					var margin = {top: 1, right: 2, bottom: 1, left: 1},
+						width = 100 - margin.left - margin.right,
+						height = 90 - margin.top - margin.bottom;
+
+					var formatPercent = d3.format("0");
+
+					var x = d3.scale.ordinal()
+						.rangeRoundBands([0, width], .1);
+
+					var y = d3.scale.linear()
+						.range([height, 0]);
+
+					var xAxis = d3.svg.axis()
+						.scale(x)
+						.orient("bottom");
+
+					var yAxis = d3.svg.axis()
+						.scale(y)
+						.orient("left")
+						//.tickFormat(formatPercent);
+
+					var tip = d3.tip()
+					  .attr("class", "d3-tip")
+					  .offset([-10, 0])
+					  .html(function(d) {
+						return "<strong>GPU" + d.letter +": </strong>" + d.frequency;
+					  })
+
+					var svg = d3.select("#temp'.$rigname.'").append("svg")
+						.attr("width", width + margin.left + margin.right)
+						.attr("height", height + margin.top + margin.bottom)
+						//.attr("stroke", "black")
+						 .attr("dy", "1.85em")
+					  .append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+						
+
+					svg.call(tip);
+
+						//var rectClass = "t"+d.frequency;
+						//console.log(rectClass);
+
+					//d3.tsv("data.tsv", type, function(error, data) {
+
+						var data= '.$temp_json.';
+						//console.log(data);
+
+						function type(d) {
+							d.frequency = +d.frequency;
+							d.class =  d.class;
+						  return d;
+						}
+
+						//console.log(data);
+						//console.log(data2);
+
+
+						x.domain(data.map(function(d) { return d.letter; }));
+						//saturate values for contrast comparisment
+					  //y.domain([0, 30+d3.max(data, function(d) { return d.frequency; })]);
+					   
+						y.domain([0, 130]);
+						
+							var outageThresholds = [ 20, 30, 40, 60, 70, 80, 100 ];
+	var thresholdColors = ["rgb(0,255,255)","rgb(123,255,123)","rgb(216,255,35)","rgb(255,255,100)","rgb(255,255,0)","rgb(255,200,0)","rgb(255,0,0)"];
+	outColor = d3.scale.threshold()
+                 .domain(outageThresholds)
+                 .range(thresholdColors);
+
+					 // svg.append("g")
+						// .attr("class", "x axis")
+						// .attr("transform", "translate(0," + height + ")")
+						 //.call(xAxis);
+						
+
+					  //svg.append("g")
+						//  .attr("class", "y axis")
+						//  .call(yAxis)
+						//.append("text")
+						 //.attr("transform", "rotate(-90)")
+						  //.attr("y", 6)
+						 // .attr("dy", ".71em")
+						  //.style("text-anchor", "end")
+						 // .text("Frequency");
+						 
+				
+					  svg.selectAll(".bar")
+						  .data(data)
+						.enter().append("rect")
+						  //.attr("class", "t70")
+						  .attr("class", "bar")
+						  .attr("fill", function(d) {
+								if (d.frequency > 0) {
+									return(outColor(d.frequency));
+								} else {
+									return("white");
+								}
+							} )
+						  //.attr("fill", function(d) { return d3.rgb(255,0,0);})
+						  .attr("x", function(d) { return x(d.letter); })
+						  .attr("width", x.rangeBand())
+						  .attr("y", function(d) { return y(d.frequency); })
+						  .attr("height", function(d) { return height - y(d.frequency); })
+						  .on("mouseover", tip.show)
+						  .on("mouseout", tip.hide);
+						  
+						  svg.append("svg:text")
+						.attr("class", "aster-score")
+						.attr("dy", "2.5em")
+						.attr("text-anchor", "right") // text-align: right
+						.text("'.$this->labels["label20"].'");
+						//.text(Math.round(score));
+						
+						//.html(function(d) {
+						//return "<strong>GPU" + d.letter +": </strong>" + d.frequency;
+						//});
+
+
+
+					</script>
+				';
+				
+				/*
 				<div class="riglist_cell table_power"><strong>Efficiency</strong></div>
 				<div class="riglist_cell table_power"><span>'.$datalyser->powerEfficiency($rigstats["watts"],$rigstats["miner_hashes"],$rigstats["gpus"]).'</span></div>
 				*/

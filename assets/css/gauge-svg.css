@@ -1,0 +1,309 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body
+{
+	font-family:Consolas;
+	font-size:10pt;
+	background-color:#222;
+	color:#bec8cb;
+
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+a, a:visited {
+  color:cyan;
+}
+
+br.clear
+{
+	clear: both;
+}
+
+div.code
+{
+	background-color:#293730;
+	color:white;
+	padding:3px;
+	border:2px solid #50534f;
+	font-size:10pt;
+
+	min-height: 150px;
+
+	position:absolute;
+	overflow:auto;
+	width:480px;
+	height:320px;
+	z-index:9999;
+	border-radius:10px;
+
+	display:none;
+	opacity:0.95;
+}
+
+div.demo-close {
+	position:absolute;
+	right:5px;
+	top:5px;
+	background-image:url('data:text/javascript;base64,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');
+	background-repeat: no-repeat;
+	background-position:top right;
+	cursor:pointer;
+	display:block;
+	width:36px;
+	height:36px;
+	z-index:10000;
+	color:#005d01;
+}
+
+div.demo
+{
+	border-top:1px inset #454545;
+	padding: 8px;
+	/*width:100%;*/
+	min-height: 220px;
+}
+
+
+/************************ EXAMPLE 1 ************************/
+
+/* default speedometer face style */
+div.default-gauge {
+	width:150px;
+	height:160px;
+	border:1px solid #232;
+	border-radius:10px;
+	overflow:hidden;
+	background-color:#121;
+	cursor:pointer;
+}
+
+div.metal-border {
+	float:left;
+	margin-right:10px;
+	width:153px;
+	height:164px;
+	padding:5px;
+	cursor:pointer;
+
+	position:relative;
+
+	background: -moz-linear-gradient(
+		top,
+		#ffffff 0%,
+		#ebebeb 50%,
+		#dbdbdb 50%,
+		#b5b5b5);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#ffffff),
+		color-stop(0.50, #ebebeb),
+		color-stop(0.50, #dbdbdb),
+		to(#b5b5b5));
+
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 15px;
+
+	border: 1px solid #949494;
+
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+
+/* fan-shaped speedometer */
+div.speedometer-half,
+div.metal-border.speedometer-half div.example {
+	height:90px;
+}
+div.metal-border.speedometer-half
+{
+	height:95px;
+}
+
+div.speedometer-3quarters,
+div.metal-border.speedometer-3quarters div.example {
+	height:150px;
+}
+div.metal-border.speedometer-3quarters
+{
+	height:155px;
+}
+
+/* white speedometer */
+div.metal-border div.example {
+	border:1px solid #232;
+	border-radius:10px;
+	background-color: #ffffff;
+
+	background: -moz-linear-gradient(
+		top,
+		#878787 0%,
+		#dedede 50%,
+		#dedede 50%,
+		#adaaad);
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		from(#878787),
+		color-stop(0.50, #dedede),
+		color-stop(0.50, #dedede),
+		to(#adaaad));
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border: 1px solid #949494;
+	-moz-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	-webkit-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,1);
+}
+
+div.gauge-value,
+div.gauge-percentage,
+div.gauge-status {
+	position:absolute;
+}
+div.gauge-value{
+	top:60px;
+	right:15px;
+	width:75px;
+	font-size:16pt;
+	color:#000;
+	text-align:right;
+}
+/*
+#example1B div.gauge-value {
+	top:72px;
+	right:15px;
+	width:75px;
+	text-align:right;
+	font-size:10pt;
+	color:#000;
+}
+
+#example1B div.gauge-percentage {
+	top:35px;
+	width:150px;
+	font-size:32pt;
+	font-weight:bold;
+	color:#000;
+	text-align:center;
+	opacity:0.2;
+}
+
+#example1D div.gauge-value,
+#example1D div.gauge-value{
+	top:60px;
+	right:15px;
+	width:75px;
+	font-size:16pt;
+	color:#000;
+	text-align:right;
+}
+
+#example1E div.gauge-status {
+	top:120px;
+	left:38px;
+	width:80px;
+	padding:5px 3px 2px 3px;
+	font-size:9pt;
+	text-align:center;
+	vertical-align:bottom;
+	border-radius:8px;
+	-moz-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	-webkit-box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+	box-shadow:
+		0px 1px 0px rgba(000,000,000,0.5),
+		inset 1px 1px 3px rgba(13,13,13,1);
+}
+
+#example1E div.gauge-status.normal,
+#example1E div.gauge-overlay.normal {
+	background-color:#009b0b;
+	color:#aef9b6;
+	text-shadow:none;
+}
+
+#example1E div.gauge-status.warning,
+#example1E div.gauge-overlay.warning {
+	background-color:#efeb00;
+	color:#81610b;
+	text-shadow:none;
+}
+
+#example1E div.gauge-status.critical,
+#example1E div.gauge-overlay.critical {
+	background-color:#c60217;
+	color:#f9c9d5;
+	text-shadow:none;
+}
+
+#example1E div.gauge-overlay {
+	opacity:0.25;
+	border-radius:70px;
+	width:122px;
+	height:122px;
+	position:absolute;
+	top:20px;
+	left:20px;
+}
+
+#example1E div.gauge-percentage {
+	top:90px;
+	width:150px;
+	font-size:12pt;
+	text-align:center;
+	color:#565656;
+	opacity:0.5;
+}
+
+#example1G div.gauge-value {
+	top:110px;
+	right:20px;
+	width:120px;
+	font-size:16pt;
+	color:#000;
+	text-align:right;
+}
+*/
+
+div.demo div.example {
+	float:left;
+	margin-right:10px;
+}
+
+div.demo div.code {
+	font-family: Consolas;
+	font-size:9pt;
+	margin-right:10px;
+	padding-left:5px;
+	background-color:#292929;
+}
+
+

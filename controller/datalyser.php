@@ -13,10 +13,10 @@ class analyseJSON{
 		 $algo_key='';
 		 foreach($minershash as $key=>$value){
 			 $algo_key=get_algo($key);
-			 if (isset($algos[$algo_key])) $algos[$algo_key]+=$value['per_hash-rig'];
+			 if (isset($algos[$algo_key])) $algos[$algo_key]+=$value['hash'];
 			 else {
 				 $algos[$algo_key]=0;
-				 $algos[$algo_key]+=$value['per_hash-rig'];
+				 $algos[$algo_key]+=$value['hash'];
 			 }
 			 
 		 }
@@ -24,41 +24,22 @@ class analyseJSON{
 		 return $algos;
 	 }
 	
-	function powerEfficiency($gpuwatts, $minerhashes, $gpus, $miner_instances){
+	function minerPools($rigs){
 		
-		//this is for AMD cards that don't report watts/usage instead we use approximate value of 100Wt
-		if($gpuwatts==0 || is_null($gpuwatts) || $gpuwatts==""){
+		$miners=array();
+		
+		foreach($rigs as $rig=>$data){
 			
-			$watts = array();
-			for($m=0; $m < $gpus; $m++){
-				$watts[$m] = 100;
-			}
-			
-		}else{
-			
-			$watts = explode(" ",$gpuwatts);	
+			$pool=substr($data['pool'], 0 ,strpos($data['pool'],':'));
+			$miners[$data['miner']][$pool][$rig]=$data['hash'];						
 		}
 		
-		// check GPU mining instances, if no GPUs are in mining mode overwrite hashrate with 0
-		if($miner_instances!=""){
-			$hashes = explode(" ", $minerhashes);
-		}
-		else{
-			$hashes = array();
-			for($g=0; $g < $gpus; $g++){
-				$hashes[$g] = 0;
-			}
-		}
+		return $miners;
+	}
+	
+	function powerEfficiency($gpuwatts, $minerhashes){
 		
-		
-		$power = 0;
-		
-		for($i=0; $i < $gpus; $i++){
-			
-			$power+=$hashes[$i]/$watts[$i];
-			
-		}
-		$power_eff = round($power/$gpus,2);
+		$power_eff = round($minerhashes/($gpuwatts*1000),2);
 		return $power_eff;
 	}
 	
@@ -73,13 +54,24 @@ class analyseJSON{
 		return $temp_avg;
 	}
 	
-	function rigPower($gpuwatts, $gpus){
-					$total_power = 0;
+	function rigPower($gpuwatts, $gpus, $gpunum){
+		//aproxpower of motherboard an			
+		$total_power = 100;
 		//this is for AMD cards that don't report watts/usage instead we use approximate value of 100Wt
 		if($gpuwatts==0 || is_null($gpuwatts) || $gpuwatts==""){
 			
-			
-			$total_power=(100*$gpus);
+			$gpu_json = file_get_contents("model/gpu-info.json");
+			$gpu_info = json_decode($gpu_json, true);
+			if(sizeof($gpus)>1){
+				foreach($gpus as $gpuname){
+					$total_power+=$gpu_info["gpu"][$gpuname]["TDP"];
+				}
+			}else{
+				for($i=0;$i<$gpunum;$i++){
+					$total_power+=100;
+				}
+			}
+			//$this->pageTitle  = self::getPageTitle();
 			
 		}else{
 			$watts = explode(" ",$gpuwatts);
@@ -88,7 +80,16 @@ class analyseJSON{
 				$total_power +=$consuming;
 			}
 		}
-		return round($total_power,0);
+		return round($total_power/1000,1);
+	}
+	
+	function totalPower($allrigs){
+		$gpuinfo = $this->getAllGPU($allrigs);
+		$sum_power=0;
+		foreach ($allrigs as $rigname=>$rigstats){
+			$sum_power+=$this->rigPower($rigstats["watts"],$gpuinfo[$rigname],$rigstats["gpus"]);
+		}
+		return $sum_power;
 	}
 	
 	function fanRPM($fanrpm){
@@ -137,13 +138,53 @@ class analyseJSON{
 		return $fanArray;
 	}
 	
-	function totalPower($all_rigs){
-		$total_power=0;
-		foreach($all_rigs as $rigdata){
+	
+	function getAllGPU($rigs){
+		$gpus = array();
+		foreach($rigs as $rig=>$rigsdata){
+			//array with all data,but need only value starting from index 2 and then vevery fifth index after
+			if($rigsdata["meminfo"]){
+				$rawinfo=explode("\n",$rigsdata["meminfo"]);
+
+				foreach($rawinfo as $i=>$gpuinfo){
+					if(strpos($rawinfo[$i],"GeForce")>0){
+	$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"GTX"),strpos($rawinfo[$i],":",strpos($rawinfo[$i],"GTX"))-(strpos($rawinfo[$i],"GTX")));
+					}elseif(strpos($rawinfo[$i],"R7")>0){
+	$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"R7"),strpos($rawinfo[$i],":",strpos($rawinfo[$i],"R7"))-(strpos($rawinfo[$i],"HD")));
+					}elseif(strpos($rawinfo[$i],"R9")>0){
+	$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"R9"),strpos($rawinfo[$i],":",strpos($rawinfo[$i],"R9"))-(strpos($rawinfo[$i],"R9")));
+					}
+					elseif(strpos($rawinfo[$i],"RX")>0){
+	$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"RX"),strpos($rawinfo[$i],":",strpos($rawinfo[$i],"RX"))-(strpos($rawinfo[$i],"RX")));
+					}
+				}
+			}else{
+				$gpus[$rig][0]="Unknown GPUs";
+			}
+			//$gpunumber=1;
+			//$searchindex = 2;
+			//for($i=0; $i < sizeof($rawinfo); $i++){
+				
+				//$gpus[$rig][$i]="Detected";
+				//if(strpos($rawinfo[$i],"GeForce")>0){
+					//$gpus[$rig][$i]="NVidia";
+//$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"GeForce")+7,strpos($rawinfo[$i],":",strpos($rawinfo[$i],"GeForce")));
+				//}else{
+//$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"Radeon")+7,strpos($rawinfo[$i],":",strpos($rawinfo[$i],"Radeon")));						
+				//	$gpus[$rig][$i]="Radeon";
+				//}
+				//extract gpu nameby index number
+				//if($i == $searchindex){
+					//$gpus[$rig][$gpunumber] = $rawinfo[$i];
+					//$searchindex+=6;
+					//$gpunumber++;
+				//}
+			//}
+			//$gpus[$rig] = $rawinfo;
 			
-			$total_power+=rigPower($rigdata["watts"], $rigdata["gpus"]);
 		}
-		return $total_power;
+		return $gpus;
+	//}
 	}
 	
 }

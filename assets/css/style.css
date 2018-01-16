@@ -1,5 +1,7 @@
+r@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
 html, body {
-	font-family: 'Raleway',sans-serif;
+	/*font-family: 'Orbitron', sans-serif!important;*/
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 }
@@ -7,48 +9,46 @@ body{
 	background-color: #272727 !important;
 	background-image: url(../images/bg-pattern.png);
 	background-repeat: repeat;
+	color: #FFFFFF;
+}
+
+ .whitetext{
+	color: #FFFFFF;
 }
 
 .nvidia {
-	color: #047400 !important;
+	color: #97C91C !important;
+	font-size: 15px;
+	font-weight: 400;
 }
 
 .amdgpu, .fglrx {
-	color: #B30002 !important;
-}
-.amdgpu:after,
-.fglrx:after
-{
-	content: url(../images/amd_radeon.png);
-	position: relative;
-
-
-}
-.nvidia:after {
-	content: url(../images/nvidia-geforce.png);
-	position: relative;
-
-
+	color: #F34349!important;
+	font-size: 15px;
+	font-weight: 400;
 }
 
-.liverig:before {
-	content: url(../images/green-lit.svg);
-	max-height: 67px;
+.chipset_holder{
+	margin-top: 2px;
+}
+
+.liverig{
+	content: url(../images/green_light.svg);
 	position: relative;
-	top: 5px;
+	top: 15px;
 
 }
 
-.slowrig:before {
-	content: url(../images/orange-lit.svg);
+.slowrig {
+	content: url(../images/orange_light.svg);
 	position: relative;
-	top: 5px;
+	top: 15px;
 
 }
-.deadrig:before {
-	content: url(../images/red-lit.svg);
+.deadrig{
+	content: url(../images/red_light.svg);
 	position: relative;
-	top: 5px;
+	top: 15px;
 
 }
 
@@ -142,53 +142,94 @@ th {
     font-weight: normal;
 }
 #id {
-	font-size: 50px;
-	font-family: digital;
-	color: aqua;
+	font-size: 16px;
+	/*font-family: digital;
+	color: aqua;*/
+	border: 2px solid;
+	border-color: silver;
 }
+
 #intro{
 	background-color: #018e64;
 	padding: 15px !important;
+	margin-bottom: 5px !important;
+	vertical-align: top;
 		
+}
+#login{
+	
+	margin-right: 50px;
+	margin-top: 10px;
+}
+#logo{
+	margin-top: 5px;
+}
+.menu_item{
+	margin-top: 5px;
+}
+#lang_selector{
+	margin-top: 10px;
+}
+.status{
+	font-size: 16px;
+	line-height: 14px;
+	color: white;
+}
+.stats_detail{
+	font-size: 14px;
+	color: white;
+}
+.stats_label{
+	font-size: 14px;
+	color: #adaaad;
+}
+.setrig{
+	position: relative;
+	top: 2px;
+}
+.statusrig{
+	margin-top: 5px;
 }
 .easy_steps, .ethOS_panel_locked{
 	display: inline-block; 
 	text-align: left; 
 	max-width: 700px;
 }
+.ip{
+	line-height: 10px;
+}
 
 .summary_wrapper{
 	display: inline-block; 
 	text-align: center;
 	margin-bottom: 25px;
+		background-color: #3F3F3F;
 }
 .summary_block{
-	background-color: #DCDCDC;
-	height: auto;
-	width: auto;
-	margin: 5px;
-	border: 2px solid;
-	border-color: #4D4D4D;
-		/*border-radius: 6px;
-float: left;*/
-	display: inline-block;
-	position:relative;
+	display: inline-block; 
 	text-align: center;
-	color: #2F2F2F;
+	vertical-align: text-top;
+	background-color: #3F3F3F;
+	padding: 25px;
+	border: 2px solid;
+	border-radius: 6px;
 	min-width: 250px;
-
-
+	/*min-height: 300px;*/
+	color: #E4DCDC;
+	margin: 10px;
 }
 
-.summary_miner{
-	
+.pool_link {
+	line-height: 35px;
+}
+
+.rigs_gpu_block{
+	text-align: center;
 	background-color: #3F3F3F;
 	color: #E4DCDC;
-	border-bottom: 1px solid;
-	border-color: #4D4D4D;
-	padding: 25px;
-	
-}
+	border: 1px solid #ccc;
+	border-radius: 3px;;
+	}
 
 .summary_miner h6{
 	font-style: italic;
@@ -201,7 +242,7 @@ float: left;*/
 
 .in_brackets{
 	font-style: italic;
-	font-size: 75%;
+
 }
 .in_brackets:before{
 	content:"(";
@@ -219,29 +260,60 @@ float: left;*/
 	content: 'Sol/s';
 }
 .riglist_wrapper{
-
-	border: 2px 2px 2px 2px solid #ccc;
-	margin: 50px;
+	margin-top: 15px;
+	margin-left: 35px;
+	margin-right: 35px;
+	margin-bottom: 15px;
 }
 .riglist_row{
-	border-bottom: 1px solid #ccc;
+	border: 1px solid #ccc;
+	border-radius: 3px;;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	background-color: #3F3F3F;
 	
 }
 .riglist_cell{
  
 	display: inline-block;
 	color: #8E8E8E;
-	padding: 15px;
-	vertical-align: middle;
+	vertical-align: top;
+
+}
+.gpu_info_div{
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 5px;
+}
+.riglist_cell_group2{
+ 
+	display: inline-block;
 
 }
 .table_status{
-	width: 25px;
-	
+	width: 32px;
+	min-height: 96;
+	vertical-align: middle;
+	padding: 4px;
+	margin-right: 5px;
+
+}
+.table_stats{
+	text-align: left;
+	vertical-align: top;
+	padding-left:32px;
+
 }
 
 .table_rigloc{
-	width: 120px;
+	text-align: left;
+	width: 150px;
+	vertical-align: top;
+	/*border-left: 1px solid #ccc;*/
+/*	padding-left: 10px;*/
+	min-height: 80px;;
 	
 }
 .table_driver{
@@ -256,48 +328,118 @@ float: left;*/
 	width: 150px;
 }
 .table_hash{
-	width: 160px;
+	min-width: 180px;
+	vertical-align: top;
+	margin-left: 32px;
+	
+}
+
+.table_gpu{
+
+	vertical-align: top;
+	padding-right: 10px;
+	min-width: 120px;
+
 	
 }
 .rack_loc{
+	color: #878787;
+	text-transform: uppercase;
+	font-weight: bold;
+
+}
+.rig_name{
 	color: white;
 	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 22px;
+
 }
-.hash_mining{
-	font-size: 40px;
+.rig_gpu_info{
+	font-size: 26px;
+	color: white;
+}
+.hash_mining, .hashminer{
+	font-size: 36px;
 	font-family: digital;
 	color: aqua;
+	line-height: 40px;
+	margin-bottom: 0px!important;
+}
+
+.hash_mining_units{
+
+	font-size: 30px;
+	/*font-style: italic;*/
+}
+
+a.pool_link{
+	font-size: 14px;
+	line-height: 14px;
+	clear: both;
+	top: -4px;
+}
+
+/* unvisited link */
+a.pool_link:link, a.pool_link:visited {
+    color: white;
+}
+
+/* visited link */
+
+/* mouse over link */
+a.pool_link:hover {
+    color: chartreuse;
+}
+
+/* selected link */
+a.pool_link:active {
+    color:chartreuse;
 }
 
 .alive_units_low{
-	font-size: 40px;
-	font-family: digital;
-	color: magenta;
+	
+	color: crimson !important;
 }
 
-.alive_untis_max{
-	font-size: 40px;
-	font-family: digital;
-	color:lime;
+.alive_units_max{
+
+	color: lime !important;
 }
 
 .table_power{
-	width: 120px;
+	width: 150px;
+	vertical-align: top;
+	margin-left: 32px;
 
 }
 .power_consumes{
-	font-size: 40px;
+	font-size: 36px;
+	font-family: digital;
+	color:crimson;
+	line-height: 34px;
+	margin-bottom: 0px!important;
+}
+.power_consumes_units{
+	font-size: 30px;
 	font-family: digital;
 	color:crimson;
 }
-
+.power_eff_div{
+	position: relative;
+	top: -8px;
+}
 .power_eff{
-	font-size: 40px;
-	font-family: digital;
 	color:gold;
+	font-size: 20px;
+	font-family: digital;
+	line-height: 1.2;
+
 }
 .table_temp{
-	width: 120px;
+
+	vertical-align: top;
+		text-align: center;
 }
 
 .miner{
@@ -312,6 +454,11 @@ float: left;*/
     vertical-align: baseline;
     border-radius: .25rem;
  	background-color: cadetblue !important;
+}
+.t0,.t1,.t2,.t3,.t4,.t5,.t6,.t7,.t8,.t9,.t10,
+.t11,.t12,.t13,.t14,.t15,.t16,.t17,.t18,.t19,.t20,
+.t21,.t22,.t23,.t24,.t25,.t26,.t27,.t28,.t29{
+	color: deepskyblue;
 }
 .t30,.t31,.t32,.t33,.t34,.t35,
 .t36,.t37,.t38,.t39,.t40,.t41,.t42,.t43,.t44,
@@ -332,17 +479,45 @@ float: left;*/
 	color: crimson !important;
 }
 .table_fanrpm{
-	width: 120px;	
+	max-width: 100px;
+	vertical-align: top;
+	text-align: center;
 }
 .table_pool{
 	width: 200px;	
 }
+.table_graphs{
+	text-align: center;	
+	margin-left: 16px;
+}
 .gauge{
       width: 120px;
-      height: 90px;
+      height: 120px;
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 5px;
+	/*
 	position: relative;
 	top: -20px;
 	left: -10px;
+	
+	border: 2px solid;
+	border-color: white;
+	border-radius: 2px;*/
 }
-
+.tempgraph{
+	text-align: center;
+	vertical-align: top;
+	display: inline-block;
+	padding: 2px;
+}
+.fangraph{
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	padding: 2px;
+/*	border: 1px solid;
+	border-color: white;
+	border-radius: 2px;*/
+}
 

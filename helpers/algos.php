@@ -5,6 +5,8 @@ function get_algo($miner, $flag = NULL) {
 		switch($miner){
 			case 'claymore': $algo = 'Ethash';
 				break;
+			case 'claymore-xmr': $algo = 'CryptoNight';
+				break;
 			case 'ethminer': $algo = 'Ethash';
 				break;
 			case 'ewbf-zcash': $algo = 'Equihash';
@@ -17,7 +19,9 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'cgminer-skein': $algo = 'Skein-SHA2';
 				break;
-			case 'sgminer-gm': $algo = 'Scrypt';
+			case 'sgminer-gm': $algo = 'Ethash';
+				break;
+			case 'dstm-zcash': $algo = 'Equihash';
 				break;
 			/*case '': $algo = '';
 				break;
@@ -42,7 +46,7 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'cryptolight' : $algo = 'AEON';
 				break;
-			case 'cryptonight' : $algo = 'XMR cryptonight';
+			case 'cryptonight' : $algo = 'CryptoNight';
 				break;
 			case 'c11/flax'  :  $algo = 'X11 variant';
 				break;
@@ -58,7 +62,7 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'fugue256'  : $algo = 'Fuguecoin';
 				break;
-			case 'groestl'  :  $algo = 'Groestlcoin';
+			case 'groestl'  :  $algo = 'Groestl';
 				break;
 			case 'heavy' :  $algo = 'Heavycoin';
 				break;
@@ -66,15 +70,15 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'jha'  :   $algo = 'JackpotCoin';
 				break;
-			case 'keccak' : $algo =  'Keccak-256';
+			case 'keccak' : $algo =  'Keccak';
 				break;
 			case 'lbry'  :  $algo = 'LBRY';
 				break;
 			case 'luffa'  :  $algo = 'Joincoin';
 				break;
-			case 'lyra2'  : $algo =  'CryptoCoin';
+			case 'lyra2'  : $algo =  'Lyra';
 				break;
-			case 'lyra2v2' : $algo = 'Lyra2RE2';
+			case 'lyra2v2' : $algo = 'Lyra2REv2';
 				break;
 			case 'lyra2z'  : $algo = 'ZeroCoin';
 				break;
@@ -108,7 +112,7 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'skein2'  : $algo = 'Woodcoin';
 				break;
-			case 'skunk' : $algo = 'Skein Cube';
+			case 'skunk' : $algo = 'Skunkhash';
 				break;
 			case 's3'  : $algo = 'S3';
 				break;
@@ -126,7 +130,7 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'x11evo'  : $algo =    'Revolver';
 				break;
-			case 'x11'     : $algo =    'X11';
+			case 'x11'     : $algo =    'X11 Gost';
 				break;
 			case 'x13'     : $algo =    'X13';
 				break;
@@ -136,7 +140,7 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'x17'     : $algo =    'X17';
 				break;
-			case 'wildkeccak' : $algo =  'Boolberry';
+			case 'wildkeccak' : $algo =  'Keccak';
 				break;
 			case 'zr5' : $algo =  'ZR5';
 				break;
@@ -153,7 +157,7 @@ function algoUnits($algo){
 		switch($algo){
 			case 'Ethash' : $unit = 'MH/s';
 				break;
-			case  'Equihash': $unit = 'Sol/s';
+			case  'Equihash': $unit = 'kH/s';
 				break;
 			case  'CryptoNight': $unit = 'H/s';
 				break;
@@ -172,7 +176,7 @@ function algoUnits($algo){
 			case  'SIA': $unit = 'MH/s';
 				break;
 				
-			default: $unit = 'MH/s';
+			default: $unit = 'xH/s*';
 		}
 	return $unit;
 	

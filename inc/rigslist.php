@@ -1,6 +1,8 @@
 <?php	
 	$allrigs = $alldata["rigs"];
-	$rg = new rigsTable();
+	
+	$rg = new rigsTable($allrigs, $pagecontent);
+	$gpuinfo=$stats->getAllGPU($allrigs);
 	?>
 <div class="container">
 	<div class="riglist_wrapper">

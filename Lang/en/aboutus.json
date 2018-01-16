@@ -1,0 +1,13 @@
+{
+	"data": 
+		{
+			"title" : "About Us",
+			"ethOS": "ethOS",
+			"abouthead" : "About Us",
+			"aboutus" : "We are small group of enthusiasts: developers, designers, and miners. <br/>Instead of listing all our previous accolades and projects, we’d just say, that we have extended experience in developing web sites, applications, and computer games.",
+			"goalhead":"Our Goal",
+			"goal" : "Is to create an application for miners, allowing easily to setup, configure, and monitor crypto mining rigs running on ethOs. <br/>Provide and visualize most important and useful information, while trying to avoid formal corporate style and appearance.",
+			"missionhead": "Our Mission",
+			"mission" : "To support ethOS project, as mining platform, and its further development and adoption by wide mining community. <br/>It is important for us to enable average users of ethOS, who lack technical knowlwedge, to figure out how to use it to maximise efficiency of their mining equipment."
+		}
+}

@@ -1,0 +1,34 @@
+{
+	"gpu":
+		{
+			"RX 460": {"Base Clock": 1090,"Boost Clock": 1200,"Memory Clock": 1750,	"TDP": 75},
+			"RX 470": {"Base Clock": 926,"Boost Clock": 1206,"Memory Clock": 1650,"TDP": 120},
+			"RX 480": {"Base Clock": 1120,"Boost Clock": 1266,"Memory Clock": 2000,"TDP": 150},		
+			"RX 550": {"Base Clock": 1100,"Boost Clock": 1183,"Memory Clock": 1750,"TDP": 50},
+			"RX 560": {"Base Clock": 1175,"Boost Clock": 1275,"Memory Clock": 1750,"TDP": 80},
+			"RX 570": {"Base Clock": 1168,"Boost Clock": 1244,"Memory Clock": 1750,"TDP": 150},
+			"RX 580": {"Base Clock": 1256,"Boost Clock": 1340,"Memory Clock": 2000,"TDP": 185},
+			"RX Vega 56": {"Base Clock": 1156,"Boost Clock": 1471,"Memory Clock": 800,"TDP": 210},
+			"RX Vega 64": {"Base Clock": 1247,"Boost Clock": 1546,"Memory Clock": 945,"TDP": 295},
+			"RX Vega 64 Liquid": {"Base Clock": 1406,"Boost Clock": 1677,"Memory Clock": 945,"TDP": 345},
+			"R9 Fury": {"Base Clock": 1000,"Boost Clock": 1050,"Memory Clock": 500,"TDP": 275},
+			"R9 390": {"Base Clock": 1050,"Boost Clock": 1100,"Memory Clock": 1500,"TDP": 275},
+			"R9 380": {"Base Clock": 970,"Boost Clock": 1020,"Memory Clock": 1375,"TDP": 190},
+			"R9 285/R9 380": {"Base Clock": 970,"Boost Clock": 1020,"Memory Clock": 1375,"TDP": 190},
+			"R9 380x": {"Base Clock": 970,"Boost Clock": 1020,"Memory Clock": 1375,"TDP": 190},
+			"R9 370": {"Base Clock": 975,"Boost Clock": 1025,"Memory Clock": 1400,"TDP": 110},
+			"R9 290": {"Base Clock": 947,"Boost Clock": 1000,"Memory Clock": 1250,"TDP": 230},
+			"R9 280": {"Base Clock": 850,"Boost Clock": 900,"Memory Clock": 1500,"TDP": 250},
+			"R9 280x": {"Base Clock": 850,"Boost Clock": 900,"Memory Clock": 1500,"TDP": 250},
+			"R9 270": {"Base Clock": 900,"Boost Clock": 950,"Memory Clock": 1400,"TDP": 150},
+			"GTX 1050 Ti": {"Base Clock": 1290,"Boost Clock": 1392,"Memory Clock": 1750,"TDP": 75},
+			"GTX 1060 3GB": {"Base Clock": 1506,"Boost Clock": 1708,"Memory Clock": 2000,"TDP": 120},
+			"GTX 1060 6GB": {"Base Clock": 1506,"Boost Clock": 1708,"Memory Clock": 2000,"TDP": 120},
+			"GTX 1070": {"Base Clock": 1506,"Boost Clock": 1683,"Memory Clock": 2002,"TDP": 150},
+			"GTX 1070 Ti": {"Base Clock": 1607,"Boost Clock": 1683,"Memory Clock": 2002,"TDP": 180},
+			"GTX 1080": {"Base Clock": 1607,"Boost Clock": 1733,"Memory Clock": 1251,"TDP": 180},
+			"GTX 1080 Ti": {"Base Clock": 1480,"Boost Clock": 1582,"Memory Clock": 1425,"TDP": 250},
+			"GTX 1080 Titan": {"Base Clock": 1480,"Boost Clock": 1582,"Memory Clock": 1376,"TDP": 250}
+		},
+	"dummy": "dummy value"
+}

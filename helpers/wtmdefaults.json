@@ -1,0 +1,17 @@
+{
+	"data":
+		{
+			"Ethash" : 88.5,
+			"Groestl" : 54.0,
+			"X11Gost" : 20.1,
+			"CryptoNight" : 2190.0,
+			"Equihash" : 870.0,
+			"Lyra2REv2" : 14700.0,
+			"NeoScrypt" : 1950.0,
+			"LBRY" : 285.0,
+			"Blake (2b)" : 2970.0,
+			"Blake (14r)" : 4200.0,
+			"Pascal" : 2070.0,
+			"Skunkhash" : 54.0		
+		}
+}

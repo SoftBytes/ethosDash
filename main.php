@@ -1,4 +1,5 @@
 <?php
+
  if (isset($_GET["lang"])){
 	 $lang= $_GET["lang"];
  }else{
@@ -22,11 +23,18 @@ else $ethos_id= $_GET["id"];
 	require("controller/ethosclient.php");
 	require("helpers/algos.php");
 	require("view/mainview.php");
+	require("helpers/datetimezone.php");
 	//include controller file for analysing rigs/gpus
 	require("controller/datalyser.php");
+	// require whattomine connector and calculator
+	require("model/wtm-client.php");
+	require("controller/profcalc.php");
 
-	  
-	//language controller class
+	//fetch language specific menu and topnav content 
+	$topnavlang = new getlangString($lang, "topnav");
+	$topnavcontent = $topnavlang->getPageContent();
+	
+	 //fetch langugae specific page content 
 	$c = new getlangString($lang, "main");
 	$pagecontent = $c->getPageContent();
 	$pagetitle = $c->getPageTitle();
