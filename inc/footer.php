@@ -4,7 +4,7 @@
 ?>
    <div class="navbar bg-inverse navbar-inverse">
        <div class="container">
-       
+
        <a href="welcome.php?lang=<?php echo $lang ?>" ><?php echo $topnavcontent["menu1"] ?></a>
         <a href="#rigslist"><?php echo $topnavcontent["menu2"] ?></a>
         <a href="aboutus.php?lang=<?php echo $lang ?>"><?php echo $topnavcontent["menu3"] ?></a>
@@ -94,6 +94,16 @@
           $(this).toggleClass('active');
       });
   });
+
+
+
+  setInterval(function(){
+     // console.log("ajax started");
+     $("#coinRates").load("controller/coinRates.php");
+     // $("#rigsStatusContainer").load("classes/rigsStatusLoad.php");
+     // console.log("ajax ended");
+   }, 6000);
+
 </script>
 
-	
+
