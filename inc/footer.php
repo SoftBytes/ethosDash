@@ -101,7 +101,7 @@
      console.log("ajax started");
      $("#coinRates").load("model/coinRates.php");
 
-     $("#topCoins").load("model/coinRates.php");
+     $("#topCoins").load("model/topCoins.php");
 
 
      // $("#rigsStatusContainer").load("classes/rigsStatusLoad.php");
