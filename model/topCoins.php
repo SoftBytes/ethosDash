@@ -1,5 +1,9 @@
 <?php
 
+	session_start();
+	$ethos_id = $_SESSION["id"];
+	$lang = $_SESSION["lang"];
+
 
    require("helpers/langproc.php");
    require("controller/ethosclient.php");
