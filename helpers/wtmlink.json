@@ -1,0 +1,17 @@
+{
+	"data":
+		{
+			"Ethash" : "eth",
+			"Groestl" : "grof",
+			"X11Gost" : "x11gf",
+			"CryptoNight" : "cn",
+			"Equihash" : "eq",
+			"Lyra2REv2" : "lre",
+			"NeoScrypt" : "ns",
+			"LBRY" : "lbry",
+			"Blake (2b)" : "bk2bf",
+			"Blake (14r)" : "bk14",
+			"Pascal" : "pas",
+			"Skunkhash" : "skh"		
+		}
+}

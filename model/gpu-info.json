@@ -28,7 +28,8 @@
 			"GTX 1070 Ti": {"Base Clock": 1607,"Boost Clock": 1683,"Memory Clock": 2002,"TDP": 180},
 			"GTX 1080": {"Base Clock": 1607,"Boost Clock": 1733,"Memory Clock": 1251,"TDP": 180},
 			"GTX 1080 Ti": {"Base Clock": 1480,"Boost Clock": 1582,"Memory Clock": 1425,"TDP": 250},
-			"GTX 1080 Titan": {"Base Clock": 1480,"Boost Clock": 1582,"Memory Clock": 1376,"TDP": 250}
+			"GTX 1080 Titan": {"Base Clock": 1480,"Boost Clock": 1582,"Memory Clock": 1376,"TDP": 250},
+			"P106-100": {"Base Clock": 1506,"Boost Clock": 1708,"Memory Clock": 2000,"TDP": 100}
 		},
 	"dummy": "dummy value"
 }

@@ -144,7 +144,7 @@ function get_algo($miner, $flag = NULL) {
 				break;
 			case 'zr5' : $algo =  'ZR5';
 				break;
-			default: $algo = $miner; 
+			default: $algo = 'CryptoNight'; 
 		}
 				
 	}

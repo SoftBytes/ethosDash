@@ -14,8 +14,8 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<!-- D3.js -->
-	<script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/d3-style.css">
 
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>

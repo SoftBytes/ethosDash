@@ -177,7 +177,7 @@ function statsChart2(rigname, label, stats){
 						d.color  =  d3.rgb(255, scale(d.score),0);
 						d.width  = +d.weight;
 						d.label  =  d.label;
-				console.log(d.color);
+				//console.log(d.color);
 
 			});
 	

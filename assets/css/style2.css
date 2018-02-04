@@ -12,24 +12,8 @@ body{
 	color: #FFFFFF;
 }
 
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
-}
-
  .whitetext{
 	color: #FFFFFF;
-}
-
-.exchanges{
-	margin-right: 50px;
-	margin-left: 50px;
-	display: inline-block;
 }
 
 .nvidia {
@@ -174,7 +158,7 @@ th {
 	background-color: #018e64;
 	padding: 15px !important;
 	margin-bottom: 5px !important;
-	vertical-align: top;
+	vertical-align: text-top;
 		
 }
 #login{
@@ -235,28 +219,19 @@ th {
 .summary_wrapper{
 	display: inline-block; 
 	text-align: center;
-	vertical-align: text-top;
+	margin-bottom: 25px;
+	background-color: #3F3F3F;
 }
 .summary_block{
 	text-align: center;
-	vertical-align: text-top;
+	display: inline-block;
+	/*vertical-align: text-top;*/
 	background-color: #3F3F3F;
 	padding: 25px;
 	border: 2px solid;
 	border-radius: 6px;
 	min-width: 250px;
-	/*min-height: 300px;*/
-	color: #E4DCDC;
-	margin: 10px;
-}
-.summary_block_noinline{
-	text-align: center;
-	vertical-align: text-top;
-	background-color: #3F3F3F;
-	padding: 25px;
-	border: 2px solid;
-	border-radius: 6px;
-	min-width: 250px;
+	max-width: 350px;
 	/*min-height: 300px;*/
 	color: #E4DCDC;
 	margin: 10px;
@@ -270,29 +245,9 @@ th {
 }
 .calc_coin{
 	min-width: 80px;
-	text-align: left;
 }
 .calc_rates{
 	
-}
-.calc_coin_award{
-	min-width: 50px;
-	text-align: left;
-}
-.calc_coin_btc{
-	min-width: 80px;
-}
-.coin_group{
-	padding: 2px;
-	background-color: #3F3F3F;
-	border: 2px solid;
-	border-radius: 6px;
-	
-
-}
-.coin_info{
-	min-width: 75px;
-	text-align: center;
 }
 .display_75{
 	
@@ -305,12 +260,13 @@ th {
 .rigs_gpu_block{
 	text-align: center;
 	background-color: #3F3F3F;
-	vertical-align: text-top;
 	color: #E4DCDC;
 	border: 1px solid #ccc;
 	border-radius: 3px;;
 	}
-
+#intro.vertical_top{
+	vertical-align:middle;
+}
 .summary_miner h6{
 	font-style: italic;
 }
@@ -331,16 +287,13 @@ th {
 	content:")";
 }
 
-.ethash{
-	color:#00B3FF; 
-
+.ethash:after{
+	
+	content: 'MH/s';
 }
 
-.equihash{
-	color: #FBFF7F;
-}
-.cryptonight{
-	color: #FF783B;
+.equihash:after{
+	content: 'Sol/s';
 }
 .riglist_wrapper{
 	margin-top: 15px;
@@ -470,7 +423,6 @@ a.pool_link{
 	position: relative;
 	top: 2px;
 	color: #8E8E8E;
-	margin-top: 5px;
 }
 
 /* unvisited link */

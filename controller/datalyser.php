@@ -24,6 +24,25 @@ class analyseJSON{
 		 return $algos;
 	 }
 	
+	function powerbyAlgo($rigs){
+		$algos=array();
+		$algo_key='';
+		$gpuinfo = $this->getAllGPU($rigs);
+		
+		foreach($rigs as $rig=>$rigsdata){
+			$algo_key=get_algo($rigsdata["miner"]);
+			
+			$rigpower= $this->rigPower($rigsdata["watts"], $gpuinfo[$rig],$rigsdata["gpus"]);
+			
+			if(isset($algos[$algo_key])) $algos[$algo_key]+=round($rigpower*1000,1);
+			else {
+				$algos[$algo_key]=0;
+				$algos[$algo_key]+=round($rigpower*1000,1);
+			}
+		}
+		return $algos;
+	}
+	
 	function minerPools($rigs){
 		
 		$miners=array();
@@ -149,6 +168,8 @@ class analyseJSON{
 				foreach($rawinfo as $i=>$gpuinfo){
 					if(strpos($rawinfo[$i],"GeForce")>0){
 	$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"GTX"),strpos($rawinfo[$i],":",strpos($rawinfo[$i],"GTX"))-(strpos($rawinfo[$i],"GTX")));
+					}elseif(strpos($rawinfo[$i],"P10")>0){
+	$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"P10"),strpos($rawinfo[$i],":",strpos($rawinfo[$i],"P10"))-(strpos($rawinfo[$i],"P10")));					
 					}elseif(strpos($rawinfo[$i],"R7")>0){
 	$gpus[$rig][$i]=substr($rawinfo[$i],strpos($rawinfo[$i],"R7"),strpos($rawinfo[$i],":",strpos($rawinfo[$i],"R7"))-(strpos($rawinfo[$i],"HD")));
 					}elseif(strpos($rawinfo[$i],"R9")>0){
