@@ -10,9 +10,11 @@
 
    <div class="collapse navbar-collapse" id="myContent">
 	   <div class="navbar display-inline exchanges"></div>
-     <div id="coinRates">
+     <div id="coinRates" class="navbar display-inline exchanges">
 	   <!--<div class="display-inline whitetext"><div class="coin_info">&nbsp;</div><div style="position: relative; top: 11px;" class="coin_info"><span class="stats_label">USD </span></div></div>-->
    <?php
+   error_reporting(E_ALL);
+
      $tradepairs=array("BTC"=>"USDT-BTC","ETH"=>"USDT-ETH","ZEC"=>"USDT-ZEC","XMR"=>"USDT-XMR");
 	   $tradevalues=array();
 
