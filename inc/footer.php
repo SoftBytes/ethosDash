@@ -98,10 +98,10 @@
 
 
   setInterval(function(){
-     // console.log("ajax started");
+     console.log("ajax started");
      $("#coinRates").load("controller/coinRates.php");
      // $("#rigsStatusContainer").load("classes/rigsStatusLoad.php");
-     // console.log("ajax ended");
+     console.log("ajax ended");
    }, 6000);
 
 </script>
