@@ -100,9 +100,13 @@
   setInterval(function(){
      console.log("ajax started");
      $("#coinRates").load("model/coinRates.php");
+
+     $("#topCoins").load("model/coinRates.php");
+
+
      // $("#rigsStatusContainer").load("classes/rigsStatusLoad.php");
      console.log("ajax ended");
-   }, 6000);
+   }, 20000);
 
 </script>
 
