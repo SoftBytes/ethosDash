@@ -28,6 +28,7 @@ else $ethos_id= $_GET["id"];
 	require("controller/datalyser.php");
 	// require whattomine connector and calculator
 	require("model/wtm-client.php");
+	require("model/bittrex-client.php");
 	require("controller/profcalc.php");
 
 	//fetch language specific menu and topnav content 
@@ -47,7 +48,12 @@ else $ethos_id= $_GET["id"];
 	$o->sendRequest($url); 
 	$ethos_response =  $o->response_content;
 	
+	 //whattomine calculator
+	$callWTM= new wtmClient();
+	
 	  
+	//exchange
+	$callExchange=new bittrexClient();
 
 	  
 	//$alldata= json_decode($ethos_response, true);
@@ -74,7 +80,7 @@ include("inc/topnav.php");
 		include("inc/locked_api.php");
 	}
 
-	
+	include("inc/footer.php");
 ?>
 
 </body>
