@@ -99,7 +99,7 @@
 
   setInterval(function(){
      console.log("ajax started");
-     $("#coinRates").load("controller/coinRates.php");
+     $("#coinRates").load("model/coinRates.php");
      // $("#rigsStatusContainer").load("classes/rigsStatusLoad.php");
      console.log("ajax ended");
    }, 6000);
