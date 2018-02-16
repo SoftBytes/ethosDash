@@ -1,0 +1,221 @@
+h4 {
+    color: red !important;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+     color: #1d1e1f !important;
+}
+
+.progress, .progress-bar {
+    border-radius: 0 !important;
+}
+
+.minerID {
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+th {
+	white-space: nowrap;
+	width: 1%;
+}
+
+.form-group {
+    margin-bottom: 0 !important;
+}
+
+#miner3_pwr .slider-selection {
+	background: #BABABA;
+}
+
+#search {
+	border: 1px solid #5cb85c;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .fa-spinner {
+	visibility: hidden;
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  text-align: center;
+}
+
+/* align icon */
+.left-addon .fa-spinner  { left:  0px;}
+.right-addon .fa-spinner {
+	right: 0px;
+	top: calc(25%);
+	font-size: 20px;
+}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+.fa-spin-custom, .fa, .fa-spinner {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@font-face {
+    font-family: digital;
+    src: url(DS-DIGI.TTF);
+    font-weight: normal;
+}
+#id {
+	font-size: 50px;
+	font-family: digital;
+}
+.settingsInput, .poolInput {
+    width: 100%;
+}
+
+/*input.driver {
+    max-width: 300px !important;
+    width: 300px !important;
+    /* width: 500px; */
+/*}*/
+
+
+input.pwr, input.fan, input.mem, input.vlt, input.reb, input.cor, input.x, input.mxt, input.sel, input.x, input.maxgputemp, input.globalcore, input.globalmem, input.globalfan, input.globalpowertune, input.loc {
+    max-width: 80px !important;
+    width: 80px !important;
+    width: auto;
+    float: left;
+    margin-right:5px;
+}
+input.flg {
+     max-width: 200px !important;
+     width: 200px !important;
+     width: auto;
+     float: left;
+     margin-right:5px;
+
+}
+input.flagKey {
+     max-width: 200px !important;
+     width: 200px !important;
+     width: auto;
+     float: left;
+     margin-right:5px;
+
+}
+input.flagValue {
+     max-width: 194.6px !important;
+     width: 194.6 !important;
+     width: auto;
+     float: left;
+     margin-right:0px;
+
+}
+input.globalminerKey, input.flags {
+     max-width: 200px !important;
+     width: 200px !important;
+     width: auto;
+     float: left;
+     margin-right:5px;
+
+}
+.select, input.miner {
+    max-width: 165px !important;
+    width: 165px !important;
+}
+#containerUpload {
+    width: 850px;
+}
+
+#myBtn {
+ display: block;
+ width: 100px;
+ margin: 10px auto;
+}
+
+#result-modal {
+  padding: 0px;
+}
+
+#modal {
+  width: 800px;
+  margin: 0 auto;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.inputRange {
+  width: 100px;
+  margin-left: 50px;
+}
+
+.minersRange {
+  width: 70px !important;
+  display: inline-block;
+  float:left;
+  margin-right: 10px;
+}
+
+.flgKey {
+  margin-top: 8px;
+}
+
+.modal-body {
+    padding: 0px !important;
+}
+.modal-content {
+    padding: 1px !important;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: none !important;
+}
+
+.modal-footer {
+    border: none !important;
+}
+
+.flgRange {
+    float: left;
+}
+
+/*.visible {
+  / *  background: rgba(43, 53, 64, 0.55) !important; * /
+    background: yellowgreen !important;
+}
+
+.hidden {
+    background: tomato !important;
+}*/
